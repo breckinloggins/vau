@@ -10,13 +10,21 @@ List = list
 Number = (int, float)
 
 
-class Procedure(object):
-    """A user-defined vau procedure"""
+class Combiner(object):
+    """A user-defined vau combination"""
     def __init__(self, parms, body, env):
         self.parms, self.body, self.env = parms, body, env
 
     def __call__(self, *args):
         return evau(self.body, Env(self.parms, args, self.env))
+
+
+class Operative(Combiner):
+    pass
+
+
+class Applicative(Combiner):
+    pass
 
 
 class Env(dict):
@@ -28,6 +36,10 @@ class Env(dict):
     def find(self, var):
         """Find the innermost Env where var appears"""
         return self if (var in self) else self.outer.find(var)
+
+
+def do_evau(x, env):
+    evau(x, env)
 
 
 def standard_env():
@@ -62,6 +74,9 @@ def standard_env():
         'round': round,
         'symbol?': lambda x: isinstance(x, Symbol),
         '#quit': lambda: sys.exit(1),
+
+        # How meta
+        'evau': do_evau,
     })
 
     return env
@@ -110,17 +125,23 @@ def evau(x, env=global_env):
             (_, var, exp) = x
             env[var] = evau(exp, env)
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'define'")
+            raise SyntaxError("incorrect number of arguments to 'def'")
     elif x[0] == 'set!':
         try:
             (_, var, exp) = x
             env.find(var)[var] = evau(exp, env)
         except AttributeError:
             raise SyntaxError("symbol '%s' is not bound in this environment" % var)
+    elif x[0] == 'vau':
+        try:
+            (_, parms, body) = x
+            return Operative(parms, body, env)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'vau'")
     elif x[0] == 'fn':
         try:
             (_, parms, body) = x
-            return Procedure(parms, body, env)
+            return Applicative(parms, body, env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'fn'")
     else:
@@ -128,7 +149,11 @@ def evau(x, env=global_env):
             proc = evau(x[0], env)
             if not callable(proc):
                 raise SyntaxError("'%s' is not callable" % proc)
-            args = [evau(arg, env) for arg in x[1:]]
+            if isinstance(proc, Operative):
+                args = [arg for arg in x[1:]]
+            else:
+                args = [evau(arg, env) for arg in x[1:]]
+
             return proc(*args)
         except Exception as e:
             raise SyntaxError(e)
