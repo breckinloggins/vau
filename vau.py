@@ -8,7 +8,26 @@ import sys
 Symbol = str
 List = list
 Number = (int, float)
-Env = dict
+
+
+class Procedure(object):
+    """A user-defined vau procedure"""
+    def __init__(self, parms, body, env):
+        self.parms, self.body, self.env = parms, body, env
+
+    def __call__(self, *args):
+        return evau(self.body, Env(self.parms, args, self.env))
+
+
+class Env(dict):
+    """An environment: a dict of {'var': val} pairs, with an outer Env"""
+    def __init__(self, parms=(), args=(), outer=None):
+        self.update(zip(parms, args))
+        self.outer = outer
+
+    def find(self, var):
+        """Find the innermost Env where var appears"""
+        return self if (var in self) else self.outer.find(var)
 
 
 def standard_env():
@@ -66,8 +85,8 @@ def evau(x, env=global_env):
     """Evaluate an expression in an environment"""
     if isinstance(x, Symbol):
         try:
-            return env[x]
-        except KeyError:
+            return env.find(x)[x]
+        except (KeyError, AttributeError):
             raise SyntaxError("symbol '%s' is not bound in this environment" % x)
     elif not isinstance(x, List):
         return x
@@ -86,12 +105,24 @@ def evau(x, env=global_env):
             return evau(exp, env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'if'")
-    elif x[0] == 'define':
+    elif x[0] == 'def':
         try:
             (_, var, exp) = x
             env[var] = evau(exp, env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'define'")
+    elif x[0] == 'set!':
+        try:
+            (_, var, exp) = x
+            env.find(var)[var] = evau(exp, env)
+        except AttributeError:
+            raise SyntaxError("symbol '%s' is not bound in this environment" % var)
+    elif x[0] == 'fn':
+        try:
+            (_, parms, body) = x
+            return Procedure(parms, body, env)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'fn'")
     else:
         try:
             proc = evau(x[0], env)
