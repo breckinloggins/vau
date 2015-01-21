@@ -30,7 +30,36 @@ def eval(x, env=global_env):
             return env[x]
         except KeyError:
             raise SyntaxError("symbol '%s' is not bound in this environment" % x)
+    elif not isinstance(x, List):
+        return x
+    elif len(x) == 0:
+        return x
+    elif x[0] == 'quote':
+        try:
+            (_, exp) = x
+            return exp
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'quote'")
+    elif x[0] == 'if':
+        try:
+            (_, test, conseq, alt) = x
+            exp = (conseq if eval(test, env) else alt)
+            return eval(exp, env)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'if'")
+    elif x[0] == 'define':
+        try:
+            (_, var, exp) = x
+            env[var] = eval(exp, env)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'define'")
     else:
+        try:
+            proc = eval(x[0], env)
+            args = [eval(arg, env) for arg in x[1:]]
+            return proc(*args)
+        except:
+            raise SyntaxError("incorrect procedure call")
         return x
 
 
