@@ -23,9 +23,14 @@ def read_from_tokens(tokens):
     token = tokens.pop(0)
     if '(' == token:
         read_list = []
-        while tokens[0] != ')':
+        while len(tokens) != 0 and tokens[0] != ')':
             read_list.append(read_from_tokens(tokens))
-        tokens.pop(0)   # pops off the last ')' we read
+
+        try:
+            tokens.pop(0)   # pops off the last ')' we read
+        except IndexError:
+            raise SyntaxError("expected ')' while reading")
+
         return read_list
     elif ')' == token:
         raise SyntaxError("unexpected ')' while reading")
