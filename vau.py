@@ -3,6 +3,7 @@ __author__ = 'bloggins'
 
 
 import sys
+import __builtin__
 
 Symbol = str
 List = list
@@ -28,7 +29,7 @@ class Applicative(Combiner):
     pass
 
 
-class SyntaxForm(Combiner):
+class Syntaxitive(Combiner):
     """A combiner that influences the reader"""
     def __init__(self, name, parms, body, env):
         self.name, self.parms, self.body, self.env = name, parms, body, env
@@ -95,29 +96,20 @@ def standard_env():
     env.update({
         '+': op.add, '-': op.sub, '*': op.mul, '/': op.div,
         '>': op.gt, '<': op.lt, '>=': op.ge, '<=': op.le, '=': op.eq,
-        'abs': abs,
         'append': op.add,
-        'apply': apply,
         'begin': lambda *x: x[-1],
         'first': lambda x: x[0],
         'rest': lambda x: x[1:],
         'cons': lambda x, y: [x] + y,
         'eq?': op.is_,
         'equal?': op.eq,
-        'length': len,
         'list': lambda *x: List(x),
         'list?': lambda x: isinstance(x, List),
-        'map': map,
-        'max': max,
-        'min': min,
         'not': op.not_,
         'null?': lambda x: x == [],
         'number?': lambda x: isinstance(x, Number),
-        'procedure?': callable,
-        'round': round,
         'symbol?': lambda x: isinstance(x, Symbol),
         'print': do_print,
-        '#quit': lambda: sys.exit(1),
 
         # How meta
         'evau': do_evau,
@@ -167,46 +159,55 @@ def evau(x, env=global_env):
         return x
     elif len(x) == 0:
         return x
-    elif x[0] == 'defsyntax':
+    elif x[0] == '$platform-object':
+        try:
+            (_, name) = x
+            return getattr(__builtin__, name)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to '$platform-object'")
+        except AttributeError as e:
+            raise SyntaxError(e)
+    elif x[0] == '$defsyntax!':
         # TODO: Break this out into a "syntax lambda" so "def" remains the primitive
         try:
             (_, name, parms, body) = x
-            form = SyntaxForm(name, parms, body, env)
+            form = Syntaxitive(name, parms, body, env)
             syntax_forms.append(form)
             return None
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'defsyntax'")
-    elif x[0] == 'unquote':
+            raise SyntaxError("incorrect number of arguments to '$defsyntax!'")
+    elif x[0] == '$unquote':
         try:
             (_, exp) = x
             return evau(exp, env)
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'unquote'")
-    elif x[0] == 'if':
+            raise SyntaxError("incorrect number of arguments to '$unquote'")
+    elif x[0] == '$if':
         try:
             (_, test, conseq, alt) = x
             exp = (conseq if evau(test, env) else alt)
             return evau(exp, env)
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'if'")
-    elif x[0] == 'def':
+            raise SyntaxError("incorrect number of arguments to '$if'")
+    elif x[0] == '$def!':
         try:
             (_, var, exp) = x
             env[var] = evau(exp, env)
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'def'")
-    elif x[0] == 'set!':
+            raise SyntaxError("incorrect number of arguments to '$def!'")
+    elif x[0] == '$set!':
         try:
             (_, var, exp) = x
             env.find(var)[var] = evau(exp, env)
         except AttributeError:
             raise SyntaxError("symbol '%s' is not bound in this environment" % var)
-    elif x[0] == 'vau':
+    elif x[0] == '$vau':
+        # TODO: This is NOT the correct signature
         try:
             (_, parms, body) = x
             return Operative(parms, body, env)
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'vau'")
+            raise SyntaxError("incorrect number of arguments to '$vau'")
     elif x[0] == 'wrap':
         try:
             (_, combiner) = x
@@ -214,12 +215,12 @@ def evau(x, env=global_env):
             return Applicative(combiner.parms, combiner.body, combiner.env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'wrap'")
-    elif x[0] == 'fn':
+    elif x[0] == '$fn':
         try:
             (_, parms, body) = x
             return Applicative(parms, body, env)
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'fn'")
+            raise SyntaxError("incorrect number of arguments to '$fn'")
     else:
         try:
             proc = evau(x[0], env)
@@ -294,13 +295,14 @@ def vaustr(exp):
 
 
 prologue = """
-(def quote (vau (x) x))
-(defsyntax '` (x) (quote x))
+($def! $quote ($vau (x) x))
+($defsyntax! '` (x) ($quote x))
+($defsyntax! .` (x) ($platform-object x))
 """
 
 
 def main():
-    print "vau: a lisp. (type #quit to quit)"
+    print "vau: a lisp. (type (.exit) to quit)"
     for line in prologue.splitlines():
         if len(line) == 0:
             continue
