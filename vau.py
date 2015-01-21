@@ -15,7 +15,34 @@ def standard_env():
     """An environment with some vau standard procedures"""
     import math, operator as op
     env = Env()
+
+    # TODO: Expose host environment and do these within vau
     env.update(vars(math))
+    env.update({
+        '+': op.add, '-': op.sub, '*': op.mul, '/': op.div,
+        '>': op.gt, '<': op.lt, '>=': op.ge, '<=': op.le, '=': op.eq,
+        'abs': abs,
+        'append': op.add,
+        'apply': apply,
+        'begin': lambda *x: x[-1],
+        'first': lambda x: x[0],
+        'rest': lambda x: x[1:],
+        'cons': lambda x, y: [x] + y,
+        'eq?': op.is_,
+        'equal?': op.eq,
+        'length': len,
+        'list': lambda *x: List(x),
+        'list?': lambda x: isinstance(x, List),
+        'map': map,
+        'max': max,
+        'min': min,
+        'not': op.not_,
+        'null?': lambda x: x == [],
+        'number?': lambda x: isinstance(x, Number),
+        'procedure?': callable,
+        'round': round,
+        'symbol?': lambda x: isinstance(x, Symbol),
+    })
 
     return env
 
@@ -58,8 +85,8 @@ def eval(x, env=global_env):
             proc = eval(x[0], env)
             args = [eval(arg, env) for arg in x[1:]]
             return proc(*args)
-        except:
-            raise SyntaxError("incorrect procedure call")
+        except Exception as e:
+            raise SyntaxError(e)
         return x
 
 
