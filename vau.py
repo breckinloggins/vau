@@ -1,5 +1,4 @@
 # Initial lisp interpreter based heavily on http://norvig.com/lispy.html
-
 __author__ = 'bloggins'
 
 
@@ -42,6 +41,10 @@ def do_evau(x, env):
     evau(x, env)
 
 
+def do_print(x):
+    print x
+
+
 def standard_env():
     """An environment with some vau standard procedures"""
     import math, operator as op
@@ -73,6 +76,7 @@ def standard_env():
         'procedure?': callable,
         'round': round,
         'symbol?': lambda x: isinstance(x, Symbol),
+        'print': do_print,
         '#quit': lambda: sys.exit(1),
 
         # How meta
@@ -87,13 +91,28 @@ global_env = standard_env()
 
 def repl(prompt='vau> '):
     """The vau read-evau-print loop"""
-    while True:
-        try:
-            val = evau(parse(raw_input(prompt)))
-            if val is not None:
+    from pygments.lexers.lisp import SchemeLexer
+
+    from prompt_toolkit import CommandLineInterface, AbortAction
+    from prompt_toolkit import Exit
+    from prompt_toolkit.layout import Layout
+    from prompt_toolkit.layout.prompt import DefaultPrompt
+
+    cli = CommandLineInterface(layout=Layout(
+        before_input=DefaultPrompt(prompt),
+        lexer=SchemeLexer
+    ))
+
+    try:
+        while True:
+            code_obj = cli.read_input(on_exit=AbortAction.RAISE_EXCEPTION)
+            try:
+                val = evau(parse(code_obj.text))
                 print(vaustr(val))
-        except SyntaxError as e:
-            print "error: %s" % e
+            except SyntaxError as e:
+                print "error: %s" % e
+    except Exit:
+        return
 
 
 def evau(x, env=global_env):
@@ -113,6 +132,12 @@ def evau(x, env=global_env):
             return exp
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'quote'")
+    elif x[0] == 'unquote':
+        try:
+            (_, exp) = x
+            return evau(exp, env)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'unquote'")
     elif x[0] == 'if':
         try:
             (_, test, conseq, alt) = x
