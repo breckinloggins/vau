@@ -8,6 +8,30 @@ import sys
 Symbol = str
 List = list
 Number = (int, float)
+Env = dict
+
+
+def standard_env():
+    """An environment with some vau standard procedures"""
+    import math, operator as op
+    env = Env()
+    env.update(vars(math))
+
+    return env
+
+
+global_env = standard_env()
+
+
+def eval(x, env=global_env):
+    """Evaluate an expression in an environment"""
+    if isinstance(x, Symbol):
+        try:
+            return env[x]
+        except KeyError:
+            raise SyntaxError("symbol '%s' is not bound in this environment" % x)
+    else:
+        return x
 
 
 def parse(program):
@@ -64,7 +88,7 @@ def main():
             break
 
         try:
-            vau_program = parse(input_line)
+            vau_program = eval(parse(input_line))
             print "%s" % vau_program
         except SyntaxError as e:
             print "error: %s" % e
