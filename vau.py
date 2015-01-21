@@ -19,11 +19,43 @@ class Combiner(object):
 
 
 class Operative(Combiner):
+    """A combiner that does not evaluate its arguments"""
     pass
 
 
 class Applicative(Combiner):
+    """A combiner that does evanulate its arguments"""
     pass
+
+
+class SyntaxForm(Combiner):
+    """A combiner that influences the reader"""
+    def __init__(self, name, parms, body, env):
+        self.name, self.parms, self.body, self.env = name, parms, body, env
+        self.parts = self.name.split('`')
+
+        if len(self.parms) != 1:
+            raise SyntaxError("syntax forms with 0 or more than one argument are not yet supported")
+        if len(self.parts) != 2 or self.parts[1] != '':
+            raise SyntaxError("syntax forms must begin with a symbol and end with a '`'")
+        if self.parts[0] == '':
+            raise SyntaxError("syntax forms beginning with '`' are not yet supported")
+
+    def maybe_read(self, next_token, tokens):
+        if len(next_token) == 0:
+            return None
+
+        if not next_token.startswith(self.parts[0]):
+            return None
+
+        new_token = next_token[len(self.parts[0]):]
+        if new_token != '':
+            tokens.insert(0, new_token)
+        expr = read_from_tokens(tokens)
+        if expr is None:
+            raise SyntaxError("expected expression after '%s'" % self.parts[0])
+
+        return subst(self.body, self.parms[0], expr)
 
 
 class Env(dict):
@@ -36,6 +68,14 @@ class Env(dict):
         """Find the innermost Env where var appears"""
         return self if (var in self) else self.outer.find(var)
 
+
+def subst(x, name, replacement):
+    if isinstance(x, Symbol) and x == name:
+        return replacement
+    elif isinstance(x, List):
+        return [subst(el, name, replacement) for el in x]
+    else:
+        return x
 
 def do_evau(x, env):
     evau(x, env)
@@ -87,6 +127,7 @@ def standard_env():
 
 
 global_env = standard_env()
+syntax_forms = []
 
 
 def repl(prompt='vau> '):
@@ -126,12 +167,15 @@ def evau(x, env=global_env):
         return x
     elif len(x) == 0:
         return x
-    elif x[0] == 'quote':
+    elif x[0] == 'defsyntax':
+        # TODO: Break this out into a "syntax lambda" so "def" remains the primitive
         try:
-            (_, exp) = x
-            return exp
+            (_, name, parms, body) = x
+            form = SyntaxForm(name, parms, body, env)
+            syntax_forms.append(form)
+            return None
         except ValueError:
-            raise SyntaxError("incorrect number of arguments to 'quote'")
+            raise SyntaxError("incorrect number of arguments to 'defsyntax'")
     elif x[0] == 'unquote':
         try:
             (_, exp) = x
@@ -163,6 +207,13 @@ def evau(x, env=global_env):
             return Operative(parms, body, env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'vau'")
+    elif x[0] == 'wrap':
+        try:
+            (_, combiner) = x
+            combiner = evau(combiner, env)
+            return Applicative(combiner.parms, combiner.body, combiner.env)
+        except ValueError:
+            raise SyntaxError("incorrect number of arguments to 'wrap'")
     elif x[0] == 'fn':
         try:
             (_, parms, body) = x
@@ -210,6 +261,11 @@ def read_from_tokens(tokens):
     elif ')' == token:
         raise SyntaxError("unexpected ')' while reading")
     else:
+        for form in syntax_forms:
+            val = form.maybe_read(token, tokens)
+            if val is not None:
+                return val
+
         return atom(token)
 
 
@@ -237,8 +293,18 @@ def vaustr(exp):
         return str(exp)
 
 
+prologue = """
+(def quote (vau (x) x))
+(defsyntax '` (x) (quote x))
+"""
+
+
 def main():
     print "vau: a lisp. (type #quit to quit)"
+    for line in prologue.splitlines():
+        if len(line) == 0:
+            continue
+        evau(parse(line))
     repl()
 
 if __name__ == "__main__":
