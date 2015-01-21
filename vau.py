@@ -48,7 +48,10 @@ def atom(token):
     try:
         return int(token)
     except ValueError:
-        return Symbol(token)
+        try:
+            return float(token)
+        except ValueError:
+            return Symbol(token)
 
 
 def main():
