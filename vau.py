@@ -42,6 +42,7 @@ def standard_env():
         'procedure?': callable,
         'round': round,
         'symbol?': lambda x: isinstance(x, Symbol),
+        '#quit': lambda: sys.exit(1),
     })
 
     return env
@@ -50,7 +51,18 @@ def standard_env():
 global_env = standard_env()
 
 
-def eval(x, env=global_env):
+def repl(prompt='vau> '):
+    """The vau read-evau-print loop"""
+    while True:
+        try:
+            val = evau(parse(raw_input(prompt)))
+            if val is not None:
+                print(vaustr(val))
+        except SyntaxError as e:
+            print "error: %s" % e
+
+
+def evau(x, env=global_env):
     """Evaluate an expression in an environment"""
     if isinstance(x, Symbol):
         try:
@@ -70,20 +82,22 @@ def eval(x, env=global_env):
     elif x[0] == 'if':
         try:
             (_, test, conseq, alt) = x
-            exp = (conseq if eval(test, env) else alt)
-            return eval(exp, env)
+            exp = (conseq if evau(test, env) else alt)
+            return evau(exp, env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'if'")
     elif x[0] == 'define':
         try:
             (_, var, exp) = x
-            env[var] = eval(exp, env)
+            env[var] = evau(exp, env)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to 'define'")
     else:
         try:
-            proc = eval(x[0], env)
-            args = [eval(arg, env) for arg in x[1:]]
+            proc = evau(x[0], env)
+            if not callable(proc):
+                raise SyntaxError("'%s' is not callable" % proc)
+            args = [evau(arg, env) for arg in x[1:]]
             return proc(*args)
         except Exception as e:
             raise SyntaxError(e)
@@ -134,20 +148,17 @@ def atom(token):
             return Symbol(token)
 
 
+def vaustr(exp):
+    """Convert Python object back into a vau-readable string"""
+    if isinstance(exp, List):
+        return '(' + ' '.join(map(vaustr, exp)) + ')'
+    else:
+        return str(exp)
+
+
 def main():
-
     print "vau: a lisp. (type #quit to quit)"
-    while 1:
-        print "vau> ",
-        input_line = sys.stdin.readline().rstrip('\n')
-        if input_line == "#quit":
-            break
-
-        try:
-            vau_program = eval(parse(input_line))
-            print "%s" % vau_program
-        except SyntaxError as e:
-            print "error: %s" % e
+    repl()
 
 if __name__ == "__main__":
     main()
