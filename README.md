@@ -10,7 +10,7 @@ vau is an experiment (or rather, a collection of experiments).
 
 The core of vau is designed to be easily easily lexed and analyzed. Thus vau **enforces** certain naming restrictions at the native interpreter level. Note that most user code will never see these symbols, because almost all vau code will live at higher syntax levels.
 
-```%foo`` is a symbol named %foo that refers to "plain old data"
+```%foo``` is a symbol named %foo that refers to "plain old data"
 
 ```$foo``` is an operative named $foo (argument evaluation controlled inside the operative)
 
@@ -26,25 +26,35 @@ The core of vau is designed to be easily easily lexed and analyzed. Thus vau **e
 
 ```.foo``` is a platform object named foo
 
+### vau has builtin operators for defining new syntax
+
+Names that declare new syntax are called `Syntaxitives` and start with a `#`. A Syntaxitive is a combiner that is explicitly restricted to running at read-time in the current evaluation level. If a Syntaxitive symbol has one or more ``` ` ``` characters, each such character represents a "hole" where arguments will go when parsed by the reader. If no such holes are declared, the Syntaxitive is a regular syntax macro (as found in Common Lisp and Clojure).
+
+Example syntaxitives (in prelude.vau):
+```
+#'` (x) -> ($quote x)             ;; 'foo -> ($quote foo)
+#.` (x) -> ($platform-object x)   ;; .foo -> ($platform-object foo)
+#my-quote (x) -> ($quote x)       ;; (my-quote foo) -> ($quote foo)
+```
+
+
+
 Note that overuse of syntaxitives may cause diarrhea of the semicolon.
 
-Current syntaxitives in prelude:
-```
-'` (x) -> ($quote x)
-.` (x) -> ($platform-object x)
-```
+### vau respects its platform
 
 Platform integration (currently only python):
 
 ```
-($def! os (.__import__ 'os))
-(((.getattr (.getattr os 'path) 'join) 'foo 'bar) => foo/bar
+($def! %os (.__import__ 'os))
+(((.getattr (.getattr %os 'path) 'join) 'foo 'bar) => foo/bar
 ```
 
-Goals:
+### vau has bigger plans
+
 - Implementation based on abstractions, not data structures (a la Clojure)
 - The core language should be as reflective as possible with respect to its host
-- Core vau naming conventions (as above) are struct and will be enforced
+- Core vau naming conventions (as above) are strict and will be enforced
 - Built-in syntax abstractions (like Syntaxitives and full control over the reader and the expander)
 - Macros and syntaxitives provide layers on top of vau
 - Extremely rich integration with the reader and the repl
