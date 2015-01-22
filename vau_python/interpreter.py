@@ -4,7 +4,7 @@ import __builtin__
 
 from .combiners import Syntaxitive, Operative, Applicative
 from .types import Symbol, List
-from .environment import global_env
+from .environment import global_env, Env
 from .reader import syntax_forms
 
 
@@ -87,6 +87,21 @@ def __evau_builtin_fn(x, env):
     return Applicative(parms, body, env, evau)
 
 
+def __evau_builtin_evau(x, env):
+    (_, exp, new_env) = x
+    new_env = evau(new_env, env)
+    if not isinstance(new_env, Env):
+        raise SyntaxError("second argument to @evau must evaluate to an environment")
+    return evau(exp, new_env)
+
+
+def __evau_builtin_get_current_environment(x, env):
+    if len(x) != 1:
+        raise ValueError
+
+    return env
+
+
 vau_builtins = {
     '$platform-object': __evau_builtin_platform_object,
     '$defsyntax!': __evau_builtin_defsyntax,
@@ -97,6 +112,8 @@ vau_builtins = {
     '$vau': __evau_builtin_vau,
     '$fn': __evau_builtin_fn,
     '@wrap': __evau_builtin_wrap,
+    '@evau': __evau_builtin_evau,
+    '@get-current-environment': __evau_builtin_get_current_environment,
 }
 
 
