@@ -22,6 +22,7 @@ vau_builtins = {
     'wrap',
 }
 
+current_env = None
 
 class VauLexer(RegexLexer):
     """
@@ -81,6 +82,9 @@ class VauLexer(RegexLexer):
             ('(%s)' % '|'.join(re.escape(entry) + ' ' for entry in keywords),
              Keyword),
 
+            # HACK: This should be handled by some metadata on defsyntax
+            (r"\." + valid_name, Name.Class),
+
             # first variable in a quoted string like
             # '(this is syntactic sugar)
             # (r"(?<='\()" + valid_name, Name.Variable),
@@ -93,7 +97,7 @@ class VauLexer(RegexLexer):
             # the remaining functions
             # (r'(?<=\()' + valid_name, Name.Function),
             # find the remaining variables
-            # (valid_name, Name.Variable),
+            (valid_name, Name.Other),
 
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
@@ -111,6 +115,13 @@ class VauLexer(RegexLexer):
         #     (r'[^()]+', Comment),
         # ],
     }
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
+            if token is Name.Other and current_env is not None and current_env.find(value) is not None:
+                yield index, Keyword.Pseudo, value
+            else:
+                yield index, token, value
 
 
 Symbol = str
@@ -175,7 +186,12 @@ class Env(dict):
 
     def find(self, var):
         """Find the innermost Env where var appears"""
-        return self if (var in self) else self.outer.find(var)
+        if var in self:
+            return self
+        elif self.outer is not None:
+            return self.outer.find(var)
+        else:
+            return None
 
 
 def subst(x, name, replacement):
@@ -229,21 +245,23 @@ def standard_env():
 global_env = standard_env()
 syntax_forms = []
 
+from prompt_toolkit import CommandLineInterface, AbortAction
+from prompt_toolkit import Exit
+from prompt_toolkit.layout import Layout
+from prompt_toolkit.layout.prompt import DefaultPrompt
 
-def repl(prompt='vau> '):
+cli = CommandLineInterface(layout=Layout(
+    before_input=DefaultPrompt('vau> '),
+    lexer=VauLexer
+))
+
+
+def repl():
     """The vau read-evau-print loop"""
-    from prompt_toolkit import CommandLineInterface, AbortAction
-    from prompt_toolkit import Exit
-    from prompt_toolkit.layout import Layout
-    from prompt_toolkit.layout.prompt import DefaultPrompt
-
-    cli = CommandLineInterface(layout=Layout(
-        before_input=DefaultPrompt(prompt),
-        lexer=VauLexer
-    ))
-
     try:
         while True:
+            global current_env
+            current_env = global_env
             code_obj = cli.read_input(on_exit=AbortAction.RAISE_EXCEPTION)
             try:
                 val = evau(parse(code_obj.text))
