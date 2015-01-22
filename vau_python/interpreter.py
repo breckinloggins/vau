@@ -36,7 +36,7 @@ def __evau_builtin_if(x, env):
     return evau(exp, env)
 
 
-def __evau_builtin_def(x, env):
+def __evau_builtin_define(x, env):
     (_, var, exp) = x
     start_sigil = var[0]
     if start_sigil not in ['$', '@', '%']:
@@ -54,6 +54,8 @@ def __evau_builtin_def(x, env):
     elif isinstance(val, Syntaxitive):
         if start_sigil != '#':
             raise SyntaxError("symbol '%s' is invalid; symbols that name syntaxitives must start with '#'" % var)
+    elif start_sigil != '%':
+        raise SyntaxError("symbol '%s' is invalid for the type of object (%s) being defined" % (val, type(val)))
     env[var] = val
 
 
@@ -101,7 +103,7 @@ vau_builtins = {
     '$platform-object': __evau_builtin_platform_object,
     '$defsyntax!': __evau_builtin_defsyntax,
     '$if': __evau_builtin_if,
-    '$def!': __evau_builtin_def,
+    '$define!': __evau_builtin_define,
     '$set!': __evau_builtin_set,
     '$vau': __evau_builtin_vau,
     '$fn': __evau_builtin_fn,
