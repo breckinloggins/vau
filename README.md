@@ -33,7 +33,10 @@ Platform integration (currently only python):
 ```
 
 Goals:
+- Implementation based on abstractions, not data structures (a la Clojure)
 - The core language should be as reflective as possible with respect to its host
 - Core vau naming conventions (as above) are struct and will be enforced
+- Built-in syntax abstractions (like Syntaxitives and full control over the reader and the expander)
 - Macros and syntaxitives provide layers on top of vau
 - Extremely rich integration with the reader and the repl
+- Very little assumptions about the optimization semantics of the host (e.g. vau WILL have an explicit recur construct)

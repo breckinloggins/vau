@@ -1,14 +1,15 @@
+from __future__ import unicode_literals
+
 # Initial lisp interpreter based heavily on http://norvig.com/lispy.html
 __author__ = 'bloggins'
 
-
 import sys
 import __builtin__
+from prompt_toolkit.contrib.completers import WordCompleter
 
 Symbol = str
 List = list
 Number = (int, float)
-
 
 class Combiner(object):
     """A user-defined vau combination"""
