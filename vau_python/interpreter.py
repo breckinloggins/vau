@@ -43,7 +43,23 @@ def __evau_builtin_if(x, env):
 
 def __evau_builtin_def(x, env):
     (_, var, exp) = x
-    env[var] = evau(exp, env)
+    start_sigil = var[0]
+    if start_sigil not in ['$', '@', '%']:
+        raise SyntaxError("symbol '%s' is invalid; definitions must start with a '$', '@', or '%%'" % var)
+
+    val = evau(exp, env)
+
+    # TODO: Pull this out into its own syntactic meta-feature programmable from vau itself
+    if isinstance(val, Applicative):
+        if start_sigil != '@':
+            raise SyntaxError("symbol '%s' is invalid; symbols that name applicatives must start with '@'" % var)
+    elif isinstance(val, Operative):
+        if start_sigil != '$':
+            raise SyntaxError("symbol '%s' is invalid; symbols that name operatives must start with '$'" % var)
+    elif isinstance(val, Syntaxitive):
+        if start_sigil != '#':
+            raise SyntaxError("symbol '%s' is invalid; symbols that name syntaxitives must start with '#'" % var)
+    env[var] = val
 
 
 def __evau_builtin_set(x, env):
@@ -80,8 +96,9 @@ vau_builtins = {
     '$set!': __evau_builtin_set,
     '$vau': __evau_builtin_vau,
     '$fn': __evau_builtin_fn,
-    'wrap': __evau_builtin_wrap,
+    '@wrap': __evau_builtin_wrap,
 }
+
 
 def evau(x, env=global_env):
     """Evaluate an expression in an environment"""

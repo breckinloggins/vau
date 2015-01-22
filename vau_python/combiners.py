@@ -36,7 +36,10 @@ class Applicative(Combiner):
 class Syntaxitive(Combiner):
     """A combiner that influences the reader"""
     def __init__(self, name, parms, body, env, evau):
-        self.name, self.parms, self.body, self.env, self.evau = name, parms, body, env, evau
+        if not name.startswith('#'):
+            raise SyntaxError("symbol '%s' is invalid; syntaxitives must start with a '#'" % name)
+
+        self.name, self.parms, self.body, self.env, self.evau = name[1:], parms, body, env, evau
         self.parts = self.name.split('`')
 
         if len(self.parms) != 1:

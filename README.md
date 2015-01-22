@@ -1,4 +1,4 @@
-**vau: a lisp**
+#vau: a lisp
 
 This is vau. It is a lisp written in Python.
 
@@ -6,16 +6,18 @@ The name is due to John N. Shutt and his [Kernel](http://web.cs.wpi.edu/~jshutt/
 
 vau is an experiment (or rather, a collection of experiments).
 
-Naming conventions:
+### vau is multi-stage
 
-```
-$foo    - an operative named $foo (argument evaluation controlled inside the operative)
-foo     - an applicative named foo (argument evaluation controlled outside the operative)
-$foo!   - an operative named $foo! that mutates the environment or causes other side effects
-foo!    - an applicative named foo! that mutates the environment or causes other side effects
-foo`    - a syntaxitive named foo` that changes the operation of the reader when foo is encountered
-.foo    - a platform object named foo
-```
+The core of vau is designed to be easily easily lexed and analyzed. Thus vau **enforces** certain naming restrictions at the native interpreter level. Note that most user code will never see these symbols, because almost all vau code will live at higher syntax levels.
+
+> %foo    - a symbol named %foo that refers to "plain old data"
+> $foo    - an operative named $foo (argument evaluation controlled inside the operative)
+> @foo    - an applicative named @foo (argument evaluation controlled outside the operative)
+> $foo!   - an operative named $foo! that mutates the environment or causes other side effects
+> @foo!   - an applicative named @foo! that mutates the environment or causes other side effects
+> #foo    - a syntaxitive named #foo that changes the operation of the reader when foo is encountered
+> #foo`   - a syntaxitive named #foo` that expects an expression afterward when foo is encountered
+> .foo    - a platform object named foo
 
 Note that overuse of syntaxitives may cause diarrhea of the semicolon.
 
@@ -40,3 +42,5 @@ Goals:
 - Macros and syntaxitives provide layers on top of vau
 - Extremely rich integration with the reader and the repl
 - Very little assumptions about the optimization semantics of the host (e.g. vau WILL have an explicit recur construct)
+
+*"The Vau Programming Language" "vau-lang", and "vau-lang.org" are (c) Breckin Loggins 2015*
