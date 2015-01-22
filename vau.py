@@ -22,6 +22,8 @@ vau_builtins = {
     'wrap',
 }
 
+vau_completer = WordCompleter([k for k in vau_builtins])
+
 current_env = None
 
 class VauLexer(RegexLexer):
@@ -247,13 +249,19 @@ syntax_forms = []
 
 from prompt_toolkit import CommandLineInterface, AbortAction
 from prompt_toolkit import Exit
+from prompt_toolkit.buffer import Buffer
 from prompt_toolkit.layout import Layout
 from prompt_toolkit.layout.prompt import DefaultPrompt
+from prompt_toolkit.layout.menus import CompletionsMenu
 
-cli = CommandLineInterface(layout=Layout(
-    before_input=DefaultPrompt('vau> '),
-    lexer=VauLexer
-))
+cli = CommandLineInterface(
+    layout=Layout(
+        before_input=DefaultPrompt('vau> '),
+        menus=[CompletionsMenu()],
+        lexer=VauLexer),
+    buffer=Buffer(completer=vau_completer),
+    create_async_autocompleters=True,
+)
 
 
 def repl():
