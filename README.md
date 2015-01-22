@@ -10,14 +10,21 @@ vau is an experiment (or rather, a collection of experiments).
 
 The core of vau is designed to be easily easily lexed and analyzed. Thus vau **enforces** certain naming restrictions at the native interpreter level. Note that most user code will never see these symbols, because almost all vau code will live at higher syntax levels.
 
-> %foo    - a symbol named %foo that refers to "plain old data"
-> $foo    - an operative named $foo (argument evaluation controlled inside the operative)
-> @foo    - an applicative named @foo (argument evaluation controlled outside the operative)
-> $foo!   - an operative named $foo! that mutates the environment or causes other side effects
-> @foo!   - an applicative named @foo! that mutates the environment or causes other side effects
-> #foo    - a syntaxitive named #foo that changes the operation of the reader when foo is encountered
-> #foo`   - a syntaxitive named #foo` that expects an expression afterward when foo is encountered
-> .foo    - a platform object named foo
+```%foo`` is a symbol named %foo that refers to "plain old data"
+
+```$foo``` is an operative named $foo (argument evaluation controlled inside the operative)
+
+```@foo``` is an applicative named @foo (argument evaluation controlled outside the operative)
+
+```$foo!``` is an operative named $foo! that mutates the environment or causes other side effects
+
+```@foo!``` is an applicative named @foo! that mutates the environment or causes other side effects
+
+```#foo``` is a syntaxitive named #foo that changes the operation of the reader when foo is encountered
+
+```#foo` ``` is a syntaxitive named #foo` that expects an expression afterward when foo is encountered
+
+```.foo``` is a platform object named foo
 
 Note that overuse of syntaxitives may cause diarrhea of the semicolon.
 
