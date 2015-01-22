@@ -140,8 +140,8 @@ def start_repl():
     """The vau read-evau-print loop"""
 
     global current_env
-    with open(os.path.realpath("vau_0/prologue.vau")) as prologue:
-        for line in prologue.readlines():
+    with open(os.path.realpath("vau_0/prelude.vau")) as prelude:
+        for line in prelude.readlines():
             current_env = global_env
             evau(parse(line))
 
