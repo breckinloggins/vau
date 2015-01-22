@@ -162,7 +162,13 @@ def evau(x, env=global_env):
     elif x[0] == '$platform-object':
         try:
             (_, name) = x
-            return getattr(__builtin__, name)
+            val = locals().get(name, None)
+            if val is None:
+                val = globals().get(name, None)
+            if val is not None:
+                return val
+            else:
+                return getattr(__builtin__, name)
         except ValueError:
             raise SyntaxError("incorrect number of arguments to '$platform-object'")
         except AttributeError as e:
@@ -224,8 +230,16 @@ def evau(x, env=global_env):
     else:
         try:
             proc = evau(x[0], env)
-            if not callable(proc):
+            if isinstance(proc, dict) and not callable(proc):
+                # Dicts are functions of their keys
+                args = [evau(arg, env) for arg in x[1:]]
+                if len(args) == 1:
+                    return proc.get(args[0])
+                else:
+                    return [proc.get(arg) for arg in args]
+            elif not callable(proc):
                 raise SyntaxError("'%s' is not callable" % proc)
+
             if isinstance(proc, Operative):
                 args = [arg for arg in x[1:]]
             else:

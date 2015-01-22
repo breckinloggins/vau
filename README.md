@@ -31,3 +31,9 @@ Platform integration (currently only python):
 ($def! os (.__import__ 'os))
 (((.getattr (.getattr os 'path) 'join) 'foo 'bar) => foo/bar
 ```
+
+Goals:
+- The core language should be as reflective as possible with respect to its host
+- Core vau naming conventions (as above) are struct and will be enforced
+- Macros and syntaxitives provide layers on top of vau
+- Extremely rich integration with the reader and the repl
