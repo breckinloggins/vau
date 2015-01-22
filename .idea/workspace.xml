@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/combiners.py" afterPath="$PROJECT_DIR$/vau_python/combiners.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/environment.py" afterPath="$PROJECT_DIR$/vau_python/environment.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/interpreter.py" afterPath="$PROJECT_DIR$/vau_python/interpreter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_0/prelude.vau" afterPath="$PROJECT_DIR$/vau_0/prelude.vau" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/repl.py" afterPath="$PROJECT_DIR$/vau_python/repl.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vau.iws" />
@@ -163,11 +158,11 @@
         <option value="$PROJECT_DIR$/vau" />
         <option value="$PROJECT_DIR$/vau_0/prologue.vau" />
         <option value="$PROJECT_DIR$/vau_python/repl.py" />
-        <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/vau_python/environment.py" />
         <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
         <option value="$PROJECT_DIR$/vau_python/combiners.py" />
+        <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
       </list>
     </option>
   </component>
@@ -564,7 +559,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421958442729</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="define $vau correctly; take the meaning of the word &quot;applicative&quot; seriously for @eval, ignore _ symbols">
+      <created>1421966058502</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1421966058502</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -627,7 +628,8 @@
     <MESSAGE value="be struct about level-0 symbol name encodings" />
     <MESSAGE value="it's called &quot;prelude&quot;, not &quot;prologue&quot;" />
     <MESSAGE value="define @evau and @get-current-environment&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="define @evau and @get-current-environment&#10;" />
+    <MESSAGE value="define $vau correctly; take the meaning of the word &quot;applicative&quot; seriously for @eval, ignore _ symbols" />
+    <option name="LAST_COMMIT_MESSAGE" value="define $vau correctly; take the meaning of the word &quot;applicative&quot; seriously for @eval, ignore _ symbols" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

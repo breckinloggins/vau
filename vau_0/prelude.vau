@@ -1,6 +1,6 @@
 ($defsyntax! #.` (x) ($platform-object x))
 
 ($def! %empty-environment (.Env))
-($def! $quote ($vau (x) env x))
+($def! $quote ($vau (x) _ x))
 ($def! $unquote! ($vau (x) env (@evau x env)))
 ($defsyntax! #'` (x) ($quote x))
