@@ -9,6 +9,13 @@ class Env(dict):
         self.update(zip(parms, args))
         self.outer = outer
 
+    def __setitem__(self, key, value):
+        # NOTE: not perfect
+        if key == '_':
+            return
+
+        super(Env, self).__setitem__(key, value)
+
     def find(self, var):
         """Find the innermost Env where var appears"""
         if var in self:

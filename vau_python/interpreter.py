@@ -30,11 +30,6 @@ def __evau_builtin_defsyntax(x, env):
     return None
 
 
-def __evau_builtin_unquote(x, env):
-    (_, exp) = x
-    return evau(exp, env)
-
-
 def __evau_builtin_if(x, env):
     (_, test, conseq, alt) = x
     exp = (conseq if evau(test, env) else alt)
@@ -71,9 +66,8 @@ def __evau_builtin_set(x, env):
 
 
 def __evau_builtin_vau(x, env):
-    # TODO: This is NOT the correct signature
-    (_, parms, body) = x
-    return Operative(parms, body, env, evau)
+    (_, parms, eparm, body) = x
+    return Operative(parms, eparm, body, env, evau)
 
 
 def __evau_builtin_wrap(x, env):
@@ -89,6 +83,7 @@ def __evau_builtin_fn(x, env):
 
 def __evau_builtin_evau(x, env):
     (_, exp, new_env) = x
+    exp = evau(exp, env)
     new_env = evau(new_env, env)
     if not isinstance(new_env, Env):
         raise SyntaxError("second argument to @evau must evaluate to an environment")
@@ -105,7 +100,6 @@ def __evau_builtin_get_current_environment(x, env):
 vau_builtins = {
     '$platform-object': __evau_builtin_platform_object,
     '$defsyntax!': __evau_builtin_defsyntax,
-    '$unquote': __evau_builtin_unquote,
     '$if': __evau_builtin_if,
     '$def!': __evau_builtin_def,
     '$set!': __evau_builtin_set,
@@ -148,10 +142,11 @@ def evau(x, env=global_env):
 
             if isinstance(proc, Operative):
                 args = [arg for arg in x[1:]]
+                return proc(env, *args)
             else:
                 args = [evau(arg, env) for arg in x[1:]]
+                return proc(*args)
 
-            return proc(*args)
         except Exception as e:
             raise SyntaxError(e)
         return x

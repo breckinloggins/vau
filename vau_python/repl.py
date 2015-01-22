@@ -142,6 +142,8 @@ def start_repl():
     global current_env
     with open(os.path.realpath("vau_0/prelude.vau")) as prelude:
         for line in prelude.readlines():
+            if line == '\n':
+                continue
             current_env = global_env
             evau(parse(line))
 

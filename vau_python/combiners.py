@@ -25,7 +25,18 @@ class Combiner(object):
 
 class Operative(Combiner):
     """A combiner that does not evaluate its arguments"""
-    pass
+    def __init__(self, parms, eparm, body, env, evau):
+        if eparm in parms:
+            raise SyntaxError("parameter name '%s' cannot be both a formal parameter and an environment parameter")
+
+        self.parms, self.eparm, self.body, self.env, self.evau = parms, eparm, body, env, evau
+
+    def __call__(self, dyn_env, *args):
+        if not isinstance(dyn_env, Env):
+            raise SyntaxError('first parameter given to operative call must be an environment')
+        local_env = Env(self.parms, args, self.env)
+        local_env[self.eparm] = dyn_env
+        return self.evau(self.body, local_env)
 
 
 class Applicative(Combiner):
