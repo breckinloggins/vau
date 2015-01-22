@@ -1,0 +1,3 @@
+($def! $quote ($vau (x) x))
+($defsyntax! '` (x) ($quote x))
+($defsyntax! .` (x) ($platform-object x))

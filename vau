@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+# Initial lisp interpreter based heavily on http://norvig.com/lispy.html
+__author__ = 'bloggins'
+
+from vau_python.repl import start_repl
+
+
+def main():
+    print "vau: a lisp. (type (.exit) to quit)"
+    start_repl()
+
+
+if __name__ == "__main__":
+    main()
