@@ -100,7 +100,7 @@ def __evau_builtin_evau(env, exp, new_env):
     return evau(exp, new_env)
 
 
-def __evau_builtin_print(env, x):
+def __evau_builtin_present(env, x):
     print(evau(x, env))
 
 
@@ -115,7 +115,7 @@ vau_builtins = {
     'raw-wrap': __evau_builtin_raw_wrap,
     'evau': __evau_builtin_evau,
 
-    'print!': __evau_builtin_print,
+    'present': __evau_builtin_present,
 
     'op-add': lambda v, x, y: evau(x, v) + evau(y, v),
     'True': True,
