@@ -64,4 +64,9 @@ Platform integration (currently only python):
 - Extremely rich integration with the reader and the repl
 - Very little assumptions about the optimization semantics of the host (e.g. vau WILL have an explicit recur construct)
 
+*References*
+
+- [Schrodinger's Equation of Software](http://gliese1337.blogspot.com/2012/04/schrodingers-equation-of-software.html)
+- [The Kernel Underground](http://axisofeval.blogspot.com/2011/09/kernel-underground.html)
+
 *"The Vau Programming Language" "vau-lang", and "vau-lang.org" are (c) Breckin Loggins 2015*
