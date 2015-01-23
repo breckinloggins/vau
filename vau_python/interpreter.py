@@ -7,9 +7,8 @@ from .types import Symbol, List, symbol_prefixes
 from .environment import global_env, syntax_forms, Env
 
 
-def __evau_builtin_platform_object(x, env):
+def __evau_builtin_platform_object(env, name):
     try:
-        (_, name) = x
         val = locals().get(name, None)
         if val is None:
             val = globals().get(name, None)
@@ -21,22 +20,19 @@ def __evau_builtin_platform_object(x, env):
         raise SyntaxError(e)
 
 
-def __evau_builtin_defsyntax(x, env):
+def __evau_builtin_defsyntax(env, name, parms, body):
     # TODO: Break this out into a "syntax lambda" so "def" remains the primitive
-    (_, name, parms, body) = x
     form = Syntaxitive(name, parms, body, env, evau)
     syntax_forms.append(form)
     return None
 
 
-def __evau_builtin_if(x, env):
-    (_, test, conseq, alt) = x
+def __evau_builtin_if(env, test, conseq, alt):
     exp = (conseq if evau(test, env) else alt)
     return evau(exp, env)
 
 
-def __evau_builtin_define(x, env):
-    (_, var, exp) = x
+def __evau_builtin_define(env, var, exp):
     start_sigil = var[0]
     if start_sigil not in symbol_prefixes:
         raise SyntaxError("symbol '%s' is invalid; definitions must start with one of %s" % (var, symbol_prefixes))
@@ -58,37 +54,43 @@ def __evau_builtin_define(x, env):
     env[var] = val
 
 
-def __evau_builtin_set(x, env):
+def __evau_builtin_set(env, var, exp):
     try:
-        (_, var, exp) = x
         env.find(var)[var] = evau(exp, env)
     except AttributeError:
         raise SyntaxError("symbol '%s' is not bound in this environment" % var)
 
 
-def __evau_builtin_vau(x, env):
-    (_, parms, eparm, body) = x
+def __evau_builtin_vau(env, parms, eparm, body):
     return Operative(parms, eparm, body, env, evau)
 
 
-def __evau_builtin_wrap(x, env):
-    (_, combiner) = x
-    combiner = evau(combiner, env)
-    return Applicative(combiner.parms, combiner.body, combiner.env, combiner.evau)
+def __evau_builtin_wrap(env, exp):
+    exp = evau(exp, env)
+    return lambda v, *x: exp(v, *[evau(expr, v) for expr in x])
 
 
-def __evau_builtin_lambda(x, env):
-    (_, parms, body) = x
+def __evau_builtin_raw_wrap(env, exp):
+    # Like wrap but does not call with the environment. Useful for calls into
+    # the platform layer and other such low-level work
+    exp = evau(exp, env)
+    return lambda v, *x: exp(*[evau(expr, v) for expr in x])
+
+
+def __evau_builtin_lambda(env, parms, body):
     return Applicative(parms, body, env, evau)
 
 
-def __evau_builtin_evau(x, env):
-    (_, exp, new_env) = x
+def __evau_builtin_evau(env, exp, new_env):
     exp = evau(exp, env)
     new_env = evau(new_env, env)
     if not isinstance(new_env, Env):
         raise SyntaxError("second argument to @evau must evaluate to an environment")
     return evau(exp, new_env)
+
+
+def __evau_builtin_print(env, x):
+    print(evau(x, env))
 
 
 vau_builtins = {
@@ -100,8 +102,30 @@ vau_builtins = {
     '$vau': __evau_builtin_vau,
     '$lambda': __evau_builtin_lambda,
     '@wrap': __evau_builtin_wrap,
+    '@raw-wrap': __evau_builtin_raw_wrap,
     '@evau': __evau_builtin_evau,
+
+    '@print!': __evau_builtin_print,
+
+    '@op-add': lambda v, x, y: evau(x, v) + evau(y, v),
+    'True': True,
+    'False': False,
+    # '@begin': lambda *x: x[-1],
+    # '@car': lambda x: x[0],
+    # '@cdr': lambda x: x[1:],
+    # '@cons': lambda x, y: [x] + y,
+    # '@eq?': op.is_,
+    # '@equal?': op.eq,
+    # '@list': lambda *x: List(x),
+    # '@list?': lambda x: isinstance(x, List),
+    # '@not': op.not_,
+    # '@null?': lambda x: x == [],
+    # '@number?': lambda x: isinstance(x, Number),
+    # '@symbol?': lambda x: isinstance(x, Symbol),
+
 }
+
+global_env.update(vau_builtins)
 
 
 def evau(x, env=global_env):
@@ -111,35 +135,17 @@ def evau(x, env=global_env):
             return env.find(x)[x]
         except (KeyError, TypeError, AttributeError):
             raise SyntaxError("symbol '%s' is not bound in this environment" % x)
-    elif not isinstance(x, List):
-        return x
-    elif len(x) == 0:
-        return x
-    elif isinstance(x[0], Symbol) and x[0] in vau_builtins:
-        try:
-            return vau_builtins[x[0]](x, env)
-        except ValueError:
-            raise SyntaxError("incorrect number of arguments to '%s'" % x[0])
+    elif isinstance(x, List):
+        if len(x) == 0:
+            return x
+
+        proc = evau(x[0], env)
+        if hasattr(proc, '__call__'):
+            try:
+                return proc(env, *x[1:])
+            except Exception as e:
+                raise SyntaxError(e)
+
+        raise SyntaxError("%s is not callable" % str(proc))
     else:
-        try:
-            proc = evau(x[0], env)
-            if isinstance(proc, dict) and not callable(proc):
-                # Dicts are functions of their keys
-                args = [evau(arg, env) for arg in x[1:]]
-                if len(args) == 1:
-                    return proc.get(args[0])
-                else:
-                    return [proc.get(arg) for arg in args]
-            elif not callable(proc):
-                raise SyntaxError("'%s' is not callable" % proc)
-
-            if isinstance(proc, Operative):
-                args = [arg for arg in x[1:]]
-                return proc(env, *args)
-            else:
-                args = [evau(arg, env) for arg in x[1:]]
-                return proc(*args)
-
-        except Exception as e:
-            raise SyntaxError(e)
         return x

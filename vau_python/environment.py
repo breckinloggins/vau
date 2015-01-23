@@ -26,10 +26,6 @@ class Env(dict):
             return None
 
 
-def _do_print(x):
-    print(x)
-
-
 def standard_env():
     """An environment with some vau standard procedures"""
     import math
@@ -37,26 +33,19 @@ def standard_env():
     env = Env()
 
     # TODO: Expose host environment and do these within vau
-    env.update(vars(math))
-    env.update({
-        '+': op.add, '-': op.sub, '*': op.mul, '/': op.div,
-        '>': op.gt, '<': op.lt, '>=': op.ge, '<=': op.le, '=': op.eq,
-        'append': op.add,
-        'begin': lambda *x: x[-1],
-        'first': lambda x: x[0],
-        'rest': lambda x: x[1:],
-        'cons': lambda x, y: [x] + y,
-        'eq?': op.is_,
-        'equal?': op.eq,
-        'list': lambda *x: List(x),
-        'list?': lambda x: isinstance(x, List),
-        'not': op.not_,
-        'null?': lambda x: x == [],
-        'number?': lambda x: isinstance(x, Number),
-        'symbol?': lambda x: isinstance(x, Symbol),
-        'print': _do_print,
-    })
-
+    #env.update(vars(math))
+    # env.update({
+    #     '@op-add': op.add,
+    #     '@op-sub': op.sub,
+    #     '@op-mul': op.mul,
+    #     '@op-div': op.div,
+    #     '@op-gt': op.gt,
+    #     '@op-lt': op.lt,
+    #     '@op-ge': op.ge,
+    #     '@op-le': op.le,
+    #     '@op-eq': op.eq,
+    #     '@append': op.add,
+    # })
     return env
 
 

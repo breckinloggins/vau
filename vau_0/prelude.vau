@@ -16,6 +16,7 @@
 ($define! %empty-environment (.Env))
 
 (rem Define some non-prefixed Clojure-like symbols)
-($define! ^def '$define!)
+(rem TODO: doesn't work because it runs in an inner environment which is promptly thrown away ($define! ^def $define!))
 ($define! ^fn '$lambda)
 
+(rem TODO: dicts should be functions of their keys)

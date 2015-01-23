@@ -14,12 +14,13 @@ def subst(x, name, replacement):
         return x
 
 
+# TODO: This whole mess is overly complicated. Do it all with lambdas, closures, and traits (attributes)
 class Combiner(object):
     """A user-defined vau combination"""
     def __init__(self, parms, body, env, evau):
         self.parms, self.body, self.env, self.evau = parms, body, env, evau
 
-    def __call__(self, *args):
+    def __call__(self, dyn_env, *args):
         return self.evau(self.body, Env(self.parms, args, self.env))
 
 
