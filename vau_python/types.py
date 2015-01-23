@@ -4,4 +4,4 @@ Symbol = str
 List = list
 Number = (int, float)
 
-symbol_prefixes = ['$', '@', '#', '%', '^']
+symbol_prefixes = ['#', '^']

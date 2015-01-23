@@ -82,10 +82,10 @@ class VauLexer(RegexLexer):
 
             # HACK: This should be handled by some metadata on defsyntax
             (r"\." + valid_name, Name.Constant),
-            (r"@" + valid_name, Name.Function),
-            (r"\$" + valid_name, Keyword),
+            # (r"@" + valid_name, Name.Function),
+            # (r"\$" + valid_name, Keyword),
             (r"#" + valid_name, Operator),
-            (r"%" + valid_name, Name.Entity),
+            # (r"%" + valid_name, Name.Entity),
             (r"\^" + valid_name, Name.Exception),
 
             # first variable in a quoted string like

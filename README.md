@@ -8,45 +8,29 @@ vau is an experiment (or rather, a collection of experiments).
 
 ### vau is multi-stage
 
-The core of vau is designed to be easily easily lexed and analyzed. Thus vau **enforces** certain naming restrictions at the native interpreter level. Note that most user code will never see these symbols, because almost all vau code will live at higher syntax levels.
+```#foo` ``` is a syntaxitive named ``` #foo` ``` that expects an expression afterward when foo is encountered
 
-```%foo``` is a symbol named %foo that refers to "plain old data"
+```^foo``` is a syntaxitive named `^foo` that, when mentioned as just `foo`, will be evaluated at read/expand time
 
-```$foo``` is an operative named $foo (argument evaluation controlled inside the operative)
-
-```@foo``` is an applicative named @foo (argument evaluation controlled outside the operative)
-
-```$foo!``` is an operative named $foo! that mutates the environment or causes other side effects
-
-```@foo!``` is an applicative named @foo! that mutates the environment or causes other side effects
-
-```#foo``` is a syntaxitive named #foo that changes the operation of the reader when foo is encountered
-
-```#foo` ``` is a syntaxitive named #foo` that expects an expression afterward when foo is encountered
-
-```^foo``` is a symbol named ^foo that, when referred to as just "foo" by the reader, will be evaluated at read time
+### vau has some nice syntactic sugar
 
 ```.foo``` is a platform object named foo
 
 ```_``` is the name of a symbol that can never be bound (called `#ignore` in Kernel)
 
-### vau has some nice syntactic sugar
-
 (**coming soon**)
-```foo/bar``` is short for ```(@evau bar foo)``` (thus treating environments as namespaces)
+```foo/bar``` is short for ```(evau bar foo)``` (thus treating environments as namespaces)
 
 ### vau has builtin operators for defining new syntax
 
-Names that declare new syntax are called `Syntaxitives` and start with a `#`. A Syntaxitive is a combiner that is explicitly restricted to running at read-time in the current evaluation level. If a Syntaxitive symbol has one or more ``` ` ``` characters, each such character represents a "hole" where arguments will go when parsed by the reader. If no such holes are declared, the Syntaxitive is a regular syntax macro (as found in Common Lisp and Clojure).
+Names that declare new syntax are called `Syntaxitives` and start with a `#` or a `^`. A Syntaxitive is a combiner that is explicitly restricted to running at read-time in the current evaluation level. If a Syntaxitive symbol has one or more ``` ` ``` characters, each such character represents a "hole" where arguments will go when parsed by the reader. If no such holes are declared, the Syntaxitive is a regular syntax macro (as found in Common Lisp and Clojure).
 
 Example syntaxitives (in prelude.vau):
 ```
-#'` (x) -> ($quote x)             ;; 'foo -> ($quote foo)
-#.` (x) -> ($platform-object x)   ;; .foo -> ($platform-object foo)
-#my-quote (x) -> ($quote x)       ;; (my-quote foo) -> ($quote foo)
+#'` (x) -> (quote x)             ;; 'foo -> (quote foo)
+#.` (x) -> (platform-object x)   ;; .foo -> (platform-object foo)
+^my-quote (x) -> (quote x)       ;; (my-quote foo) -> (quote foo)
 ```
-
-
 
 Note that overuse of syntaxitives may cause diarrhea of the semicolon.
 
@@ -55,8 +39,8 @@ Note that overuse of syntaxitives may cause diarrhea of the semicolon.
 Platform integration (currently only python):
 
 ```
-($def! %os (.__import__ 'os))
-(((.getattr (.getattr %os 'path) 'join) 'foo 'bar) => foo/bar
+(def! os (.__import__ 'os))
+(((.getattr (.getattr os 'path) 'join) 'foo 'bar) => foo/bar
 ```
 
 ### vau has bigger plans
