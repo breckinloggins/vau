@@ -26,8 +26,8 @@ def __evau_builtin_python_object(env, name):
         raise SyntaxError(e)
 
 
-def __evau_builtin_defsyntax(env, name, parms_or_exp, body=None):
-    # TODO: Break this out into a "syntax lambda" so "def" remains the primitive
+def __evau_builtin_syntax_as(env, name, parms_or_exp, body=None):
+    # TODO: Break this out into a "syntax lambda" so "::" remains the primitive
     start_sigil = name[0]
     if start_sigil not in symbol_prefixes:
         raise SyntaxError("symbol '%s' is invalid; syntaxitives must begin with %s" % (name, symbol_prefixes))
@@ -60,7 +60,7 @@ def __evau_builtin_cond(env, *x):
     raise SyntaxError("improper arguments to cond")
 
 
-def __evau_builtin_define(env, var, exp):
+def __evau_builtin_as(env, var, exp):
     start_sigil = var[0]
     if start_sigil in symbol_prefixes:
         raise SyntaxError("symbol '%s' is invalid; definitions must not begin with %s" % (var, symbol_prefixes))
@@ -69,7 +69,7 @@ def __evau_builtin_define(env, var, exp):
     env[var] = val
 
 
-def __evau_builtin_set(env, var, exp):
+def __evau_builtin_let_as(env, var, exp):
     try:
         env.find(var)[var] = evau(exp, env)
     except AttributeError:
@@ -106,10 +106,10 @@ def __evau_builtin_print(env, x):
 
 vau_builtins = {
     'python-object': __evau_builtin_python_object,
-    'defsyntax!': __evau_builtin_defsyntax,
+    'syntax::': __evau_builtin_syntax_as,
     'cond': __evau_builtin_cond,
-    'define': __evau_builtin_define,
-    'set!': __evau_builtin_set,
+    '::': __evau_builtin_as,
+    'let::': __evau_builtin_let_as,
     'vau': __evau_builtin_vau,
     'wrap': __evau_builtin_wrap,
     'raw-wrap': __evau_builtin_raw_wrap,

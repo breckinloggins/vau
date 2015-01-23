@@ -1,22 +1,22 @@
-(define quote (vau (x) _ x))
-(defsyntax! #'` (x) (quote x))
-(define ignore (vau (_) _ ()))
+(:: quote (vau (x) _ x))
+(syntax:: #'` (x) (quote x))
+(:: ignore (vau (_) _ ()))
 
-(defsyntax! ^rem 'ignore)
+(syntax:: ^rem 'ignore)
 (rem This is the prelude for vau)
 
 (rem Define the . prefix as a quick accessor to underlying platform objects)
-(defsyntax! #.` (x) (python-object x))
+(syntax:: #.` (x) (python-object x))
 
 (rem Operations to get the environment)
-(define get-current-environment (vau () env env))
-(define empty-environment (.Env))
+(:: get-current-environment (vau () env env))
+(:: empty-environment (.Env))
 
-(define fn (vau (args body) %
+(:: fn (vau (args body) %
     (wrap (evau (list vau args (quote _) body) %))))
 
 (rem NOTE: Breckin started to achieve lisp enlightenment after getting defun to work)
-(define defun (vau (name args body) %
-    (evau (list (quote define) name (list (quote fn) args body)) %)))
+(:: fn:: (vau (name args body) %
+    (evau (list (quote ::) name (list (quote fn) args body)) %)))
 
 (rem === Bring in builtins and primitives from the platform ===)

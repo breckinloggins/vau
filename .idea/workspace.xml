@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/interpreter.py" afterPath="$PROJECT_DIR$/vau_python/interpreter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_0/prelude.vau" afterPath="$PROJECT_DIR$/vau_0/prelude.vau" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -27,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.5" vertical-offset="0" max-vertical-offset="1005">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.35573122" vertical-offset="0" max-vertical-offset="1200">
+              <caret line="18" column="64" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -56,8 +58,8 @@
       <file leaf-file-name="repl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_python/repl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1688" max-vertical-offset="2520">
-              <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1718" max-vertical-offset="2520">
+              <caret line="82" column="72" selection-start-line="82" selection-start-column="72" selection-end-line="82" selection-end-column="72" />
               <folding>
                 <element signature="e#49#58#0" expanded="true" />
               </folding>
@@ -68,21 +70,20 @@
       <file leaf-file-name="reader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_python/reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="1335">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
               <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
               <folding>
                 <element signature="e#25#73#0" expanded="true" />
-                <marker date="1422039925000" expanded="true" signature="187:305" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prelude.vau" pinned="false" current-in-tab="true">
+      <file leaf-file-name="prelude.vau" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18703242" vertical-offset="0" max-vertical-offset="802">
-              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,8 +105,8 @@
       <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2505">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1716" max-vertical-offset="2505">
+              <caret line="142" column="29" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="29" />
               <folding>
                 <element signature="e#25#43#0" expanded="true" />
               </folding>
@@ -157,15 +158,15 @@
         <option value="$PROJECT_DIR$/docs/names_namespaces_and_environments.md" />
         <option value="$PROJECT_DIR$/vau_python/types.py" />
         <option value="$PROJECT_DIR$/vau_python/reader.py" />
-        <option value="$PROJECT_DIR$/vau_python/repl.py" />
         <option value="$PROJECT_DIR$/vau_python/combiners.py" />
         <option value="$PROJECT_DIR$/vau_python/environment.py" />
         <option value="$PROJECT_DIR$/docs/data_schema.md" />
         <option value="$PROJECT_DIR$/docs/tail_calls.md" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/docs/TODO.md" />
-        <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
+        <option value="$PROJECT_DIR$/vau_python/repl.py" />
         <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
+        <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -660,7 +661,13 @@
       <option name="project" value="LOCAL" />
       <updated>1422047295300</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="lambda is an onion&#10;&#10;Can you tell I've been reading some Paul Graham? I think he's right about lambda. It's an onion and is used far too often to have such a long name. Also, it's nice to have a two-letter name for fn when vau is a three letter name.&#10;&#10;Now I just have to figure out what to do with define.">
+      <created>1422047766697</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1422047766697</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -704,7 +711,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="define set! and fn (lambda)" />
     <MESSAGE value="define vau. It works in that it doesn't evaluate its arguments, but there is currently not much you can do with it because there isn't any access to the environment." />
     <MESSAGE value="use a real repl. define 'unquote' so that vau can make fexpr-like things." />
     <MESSAGE value="early version of defsyntax (allows a syntax form with one placeholder at the end)&#10;" />
@@ -729,7 +735,8 @@
     <MESSAGE value="defun: in which I start to become enlightened&#10;" />
     <MESSAGE value="defun: in which I start to become enlightened&#10;&#10;I'm pretty sure every lisp geek has a story about when they became enlightened. This is mine. &#10;&#10;So here's the interesting thing about lisp enlightenment: you always think it's already happened. In my case, I've been studying and playing with various lisps off and on for years now. I understand code-as-data and I understand how homoiconicity helps that along. When I say I understand it I mean that I know about it and I can tell you why it's important and the kind of things it lets you do. But today was the first day that I *felt* it.&#10;&#10;What did it take to become enlightened? Struggling with errors. I was trying to add &quot;defun&quot; to the prelude. It kept not working. I really wished I had a debugger so I could see what lisp was doing. But then I realized: I DO have a debugger. The REPL is right there! So I just kept building up a list in the repl using the list and quote operators and hitting the up arrow and editing it until I had about what I wanted. Then, when I thought it looked good, I &quot;evau&quot;d it. I was able to build up code incrementally, programmatically, until it took the form I wanted. Then I was able to build a function that spit out that code. Then I wrapped that in a define. And then I was done.&#10;&#10;Am I fully enlightened? No. But I'm really starting to get it." />
     <MESSAGE value="cond: it's nicer the Arc way&#10;&#10;cond or if, which is primitive? I think I prefer cond because it's more &quot;normal&quot;. if feels ad-hoc as a primitive. I chose to implement the Arc version of cond (without the implicit progn/do block). I think pg's rationale (in &quot;Arc at 3 weeks&quot;) is sound.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="cond: it's nicer the Arc way&#10;&#10;cond or if, which is primitive? I think I prefer cond because it's more &quot;normal&quot;. if feels ad-hoc as a primitive. I chose to implement the Arc version of cond (without the implicit progn/do block). I think pg's rationale (in &quot;Arc at 3 weeks&quot;) is sound.&#10;" />
+    <MESSAGE value="lambda is an onion&#10;&#10;Can you tell I've been reading some Paul Graham? I think he's right about lambda. It's an onion and is used far too often to have such a long name. Also, it's nice to have a two-letter name for fn when vau is a three letter name.&#10;&#10;Now I just have to figure out what to do with define." />
+    <option name="LAST_COMMIT_MESSAGE" value="lambda is an onion&#10;&#10;Can you tell I've been reading some Paul Graham? I think he's right about lambda. It's an onion and is used far too often to have such a long name. Also, it's nice to have a two-letter name for fn when vau is a three letter name.&#10;&#10;Now I just have to figure out what to do with define." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -771,7 +778,6 @@
           <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
           <folding>
             <element signature="e#25#73#0" expanded="true" />
-            <marker date="1422039925000" expanded="true" signature="187:305" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -914,27 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vau_python/reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
-          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-          <folding>
-            <element signature="e#25#73#0" expanded="true" />
-            <marker date="1422039925000" expanded="true" signature="187:305" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vau_python/repl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1688" max-vertical-offset="2520">
-          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding>
-            <element signature="e#49#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vau_python/combiners.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
@@ -975,15 +960,24 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/vau_python/repl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.5" vertical-offset="0" max-vertical-offset="1005">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1718" max-vertical-offset="2520">
+          <caret line="82" column="72" selection-start-line="82" selection-start-column="72" selection-end-line="82" selection-end-column="72" />
+          <folding>
+            <element signature="e#49#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vau_python/reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+          <folding>
+            <element signature="e#25#73#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/TODO.md">
@@ -997,22 +991,33 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2505">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1716" max-vertical-offset="2505">
+          <caret line="142" column="29" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="29" />
           <folding>
             <element signature="e#25#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18703242" vertical-offset="0" max-vertical-offset="802">
-          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.35573122" vertical-offset="0" max-vertical-offset="1200">
+          <caret line="18" column="64" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
