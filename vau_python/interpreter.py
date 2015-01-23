@@ -91,13 +91,6 @@ def __evau_builtin_evau(x, env):
     return evau(exp, new_env)
 
 
-def __evau_builtin_get_current_environment(x, env):
-    if len(x) != 1:
-        raise ValueError
-
-    return env
-
-
 vau_builtins = {
     '$platform-object': __evau_builtin_platform_object,
     '$defsyntax!': __evau_builtin_defsyntax,
@@ -108,7 +101,6 @@ vau_builtins = {
     '$fn': __evau_builtin_fn,
     '@wrap': __evau_builtin_wrap,
     '@evau': __evau_builtin_evau,
-    '@get-current-environment': __evau_builtin_get_current_environment,
 }
 
 

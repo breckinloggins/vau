@@ -4,6 +4,7 @@
 ($defsyntax! #.` (x) ($platform-object x))
 ($defsyntax! #'` (x) ($quote x))
 
+($define! $get-current-environment ($vau () env env))
 ($define! %empty-environment (.Env))
 
 ($define! ^def '$define!)

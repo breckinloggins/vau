@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/combiners.py" afterPath="$PROJECT_DIR$/vau_python/combiners.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/environment.py" afterPath="$PROJECT_DIR$/vau_python/environment.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/interpreter.py" afterPath="$PROJECT_DIR$/vau_python/interpreter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_0/prelude.vau" afterPath="$PROJECT_DIR$/vau_0/prelude.vau" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/reader.py" afterPath="$PROJECT_DIR$/vau_python/reader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/repl.py" afterPath="$PROJECT_DIR$/vau_python/repl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/types.py" afterPath="$PROJECT_DIR$/vau_python/types.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau" afterPath="$PROJECT_DIR$/vau" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vau.iws" />
@@ -95,8 +88,8 @@
       <file leaf-file-name="prelude.vau" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17110266" vertical-offset="0" max-vertical-offset="789">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.19011407" vertical-offset="0" max-vertical-offset="789">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -105,8 +98,8 @@
       <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="2385">
-              <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2265">
+              <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
               <folding>
                 <element signature="e#25#43#0" expanded="true" />
               </folding>
@@ -168,10 +161,10 @@
         <option value="$PROJECT_DIR$/vau_python/environment.py" />
         <option value="$PROJECT_DIR$/vau_python/combiners.py" />
         <option value="$PROJECT_DIR$/vau_python/types.py" />
-        <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
         <option value="$PROJECT_DIR$/vau_python/repl.py" />
         <option value="$PROJECT_DIR$/vau_python/reader.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
         <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
       </list>
     </option>
@@ -263,7 +256,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="commit &#9;ACTION&#9;CheckinProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;commit cha&#9;ACTION&#9;ChangesView.Commit&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit&#10;commi&#9;ACTION&#9;ChangesView.Commit" />
+    <property name="SearchEverywhereHistoryKey" value="commit cha&#9;ACTION&#9;ChangesView.Commit&#10;commit &#9;ACTION&#9;CheckinProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit&#10;commi&#9;ACTION&#9;ChangesView.Commit" />
     <property name="options.lastSelected" value="preferences.fileTypes" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -587,7 +580,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421966921452</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="start of lexical macros (define a symbol with a '^' prefix and it can be evaluated at read-time when the reader sees that symbol without the '^' prefix at the beginning of a list)&#10;">
+      <created>1421974783208</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1421974783208</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -653,7 +652,8 @@
     <MESSAGE value="define $vau correctly; take the meaning of the word &quot;applicative&quot; seriously for @eval, ignore _ symbols" />
     <MESSAGE value="don't refer to environment in $quote when we aren't going to use it" />
     <MESSAGE value="be more strict about symbol usage" />
-    <option name="LAST_COMMIT_MESSAGE" value="be more strict about symbol usage" />
+    <MESSAGE value="start of lexical macros (define a symbol with a '^' prefix and it can be evaluated at read-time when the reader sees that symbol without the '^' prefix at the beginning of a list)&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="start of lexical macros (define a symbol with a '^' prefix and it can be evaluated at read-time when the reader sees that symbol without the '^' prefix at the beginning of a list)&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -737,16 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="2385">
-          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
-          <folding>
-            <element signature="e#25#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Python/2.7/site-packages/pygments/token.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="498" max-vertical-offset="3060">
@@ -794,10 +784,20 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2265">
+          <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+          <folding>
+            <element signature="e#25#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17110266" vertical-offset="0" max-vertical-offset="789">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.19011407" vertical-offset="0" max-vertical-offset="789">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
