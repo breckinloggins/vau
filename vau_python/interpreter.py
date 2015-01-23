@@ -46,9 +46,18 @@ def __evau_builtin_defsyntax(env, name, parms_or_exp, body=None):
     return val
 
 
-def __evau_builtin_if(env, test, conseq, alt):
-    exp = (conseq if evau(test, env) else alt)
-    return evau(exp, env)
+def __evau_builtin_cond(env, *x):
+    args = list(x)
+    args.append(None)
+    for test, exp in zip(args[::2], args[1::2]):
+        test_val = evau(test, env)
+        if test_val:
+            if exp is None:
+                return test_val
+            else:
+                return evau(exp, env)
+
+    raise SyntaxError("improper arguments to cond")
 
 
 def __evau_builtin_define(env, var, exp):
@@ -98,7 +107,7 @@ def __evau_builtin_print(env, x):
 vau_builtins = {
     'python-object': __evau_builtin_python_object,
     'defsyntax!': __evau_builtin_defsyntax,
-    'if': __evau_builtin_if,
+    'cond': __evau_builtin_cond,
     'define': __evau_builtin_define,
     'set!': __evau_builtin_set,
     'vau': __evau_builtin_vau,

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/TODO.md" afterPath="$PROJECT_DIR$/docs/TODO.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/interpreter.py" afterPath="$PROJECT_DIR$/vau_python/interpreter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vau.iws" />
@@ -87,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TODO.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TODO.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/TODO.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13833992" vertical-offset="0" max-vertical-offset="759">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="465">
+              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -100,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2370">
-              <caret line="150" column="4" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.5703422" vertical-offset="495" max-vertical-offset="2505">
+              <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
               <folding>
                 <element signature="e#25#43#0" expanded="true" />
               </folding>
@@ -162,9 +164,9 @@
         <option value="$PROJECT_DIR$/docs/data_schema.md" />
         <option value="$PROJECT_DIR$/docs/tail_calls.md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
-        <option value="$PROJECT_DIR$/docs/TODO.md" />
         <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
+        <option value="$PROJECT_DIR$/docs/TODO.md" />
+        <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
       </list>
     </option>
   </component>
@@ -269,7 +271,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="commi&#9;ACTION&#9;CheckinProject&#10;commit c&#9;ACTION&#9;ChangesView.Commit&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit cha&#9;ACTION&#9;CheckinProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;commit &#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit" />
+    <property name="SearchEverywhereHistoryKey" value="commit&#9;ACTION&#9;CheckinProject&#10;commi&#9;ACTION&#9;CheckinProject&#10;commit c&#9;ACTION&#9;ChangesView.Commit&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit cha&#9;ACTION&#9;CheckinProject&#10;commit &#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit" />
     <property name="options.lastSelected" value="preferences.fileTypes" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -647,7 +649,13 @@
       <option name="project" value="LOCAL" />
       <updated>1422044458829</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="defun: in which I start to become enlightened&#10;&#10;I'm pretty sure every lisp geek has a story about when they became enlightened. This is mine. &#10;&#10;So here's the interesting thing about lisp enlightenment: you always think it's already happened. In my case, I've been studying and playing with various lisps off and on for years now. I understand code-as-data and I understand how homoiconicity helps that along. When I say I understand it I mean that I know about it and I can tell you why it's important and the kind of things it lets you do. But today was the first day that I *felt* it.&#10;&#10;What did it take to become enlightened? Struggling with errors. I was trying to add &quot;defun&quot; to the prelude. It kept not working. I really wished I had a debugger so I could see what lisp was doing. But then I realized: I DO have a debugger. The REPL is right there! So I just kept building up a list in the repl using the list and quote operators and hitting the up arrow and editing it until I had about what I wanted. Then, when I thought it looked good, I &quot;evau&quot;d it. I was able to build up code incrementally, programmatically, until it took the form I wanted. Then I was able to build a function that spit out that code. Then I wrapped that in a define. And then I was done.&#10;&#10;Am I fully enlightened? No. But I'm really starting to get it.">
+      <created>1422045144978</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1422045144978</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -691,7 +699,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="more python operators added to the environment (in a very un-vau way)" />
     <MESSAGE value="evau: the ultimate pun&#10;" />
     <MESSAGE value="define set! and fn (lambda)" />
     <MESSAGE value="define vau. It works in that it doesn't evaluate its arguments, but there is currently not much you can do with it because there isn't any access to the environment." />
@@ -716,7 +723,8 @@
     <MESSAGE value="lambda: the penultimate abstraction (lambda is now defined in vau)&#10;" />
     <MESSAGE value="call platform-object &quot;python-object&quot; to avoid premature abstraction&#10;&#10;- it doesn't make sense to abstract multi-platformness before we have another platform (we won't even know what we need)&#10;&#10;- python-object needs to explicitly check if it's callable and raw-wrap it if it is&#10;" />
     <MESSAGE value="defun: in which I start to become enlightened&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="defun: in which I start to become enlightened&#10;" />
+    <MESSAGE value="defun: in which I start to become enlightened&#10;&#10;I'm pretty sure every lisp geek has a story about when they became enlightened. This is mine. &#10;&#10;So here's the interesting thing about lisp enlightenment: you always think it's already happened. In my case, I've been studying and playing with various lisps off and on for years now. I understand code-as-data and I understand how homoiconicity helps that along. When I say I understand it I mean that I know about it and I can tell you why it's important and the kind of things it lets you do. But today was the first day that I *felt* it.&#10;&#10;What did it take to become enlightened? Struggling with errors. I was trying to add &quot;defun&quot; to the prelude. It kept not working. I really wished I had a debugger so I could see what lisp was doing. But then I realized: I DO have a debugger. The REPL is right there! So I just kept building up a list in the repl using the list and quote operators and hitting the up arrow and editing it until I had about what I wanted. Then, when I thought it looked good, I &quot;evau&quot;d it. I was able to build up code incrementally, programmatically, until it took the form I wanted. Then I was able to build a function that spit out that code. Then I wrapped that in a define. And then I was done.&#10;&#10;Am I fully enlightened? No. But I'm really starting to get it." />
+    <option name="LAST_COMMIT_MESSAGE" value="defun: in which I start to become enlightened&#10;&#10;I'm pretty sure every lisp geek has a story about when they became enlightened. This is mine. &#10;&#10;So here's the interesting thing about lisp enlightenment: you always think it's already happened. In my case, I've been studying and playing with various lisps off and on for years now. I understand code-as-data and I understand how homoiconicity helps that along. When I say I understand it I mean that I know about it and I can tell you why it's important and the kind of things it lets you do. But today was the first day that I *felt* it.&#10;&#10;What did it take to become enlightened? Struggling with errors. I was trying to add &quot;defun&quot; to the prelude. It kept not working. I really wished I had a debugger so I could see what lisp was doing. But then I realized: I DO have a debugger. The REPL is right there! So I just kept building up a list in the repl using the list and quote operators and hitting the up arrow and editing it until I had about what I wanted. Then, when I thought it looked good, I &quot;evau&quot;d it. I was able to build up code incrementally, programmatically, until it took the form I wanted. Then I was able to build a function that spit out that code. Then I wrapped that in a define. And then I was done.&#10;&#10;Am I fully enlightened? No. But I'm really starting to get it." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -973,16 +981,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1566" max-vertical-offset="2370">
-          <caret line="150" column="4" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
-          <folding>
-            <element signature="e#25#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
@@ -993,13 +991,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/TODO.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13833992" vertical-offset="0" max-vertical-offset="759">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="465">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5703422" vertical-offset="495" max-vertical-offset="2505">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+          <folding>
+            <element signature="e#25#43#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
