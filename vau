@@ -5,7 +5,6 @@ __author__ = 'bloggins'
 
 from vau_python.repl import start_repl
 
-
 def main():
     print "vau: a lisp. (type (.exit) to quit)"
     start_repl()

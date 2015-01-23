@@ -62,3 +62,4 @@ def standard_env():
 
 global_env = standard_env()
 current_env = global_env
+syntax_forms = []

@@ -70,8 +70,10 @@ class Syntaxitive(Combiner):
         new_token = next_token[len(self.parts[0]):]
         if new_token != '':
             tokens.insert(0, new_token)
-        expr = read_from_tokens(tokens)
+        expr = read_from_tokens(tokens, self.evau)
         if expr is None:
             raise SyntaxError("expected expression after '%s'" % self.parts[0])
 
-        return subst(self.body, self.parms[0], expr)
+        val = subst(self.body, self.parms[0], expr)
+        #val = self(expr)
+        return val

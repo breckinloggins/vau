@@ -86,6 +86,7 @@ class VauLexer(RegexLexer):
             (r"\$" + valid_name, Keyword),
             (r"#" + valid_name, Operator),
             (r"%" + valid_name, Name.Entity),
+            (r"\^" + valid_name, Name.Exception),
 
             # first variable in a quoted string like
             # '(this is syntactic sugar)
@@ -145,14 +146,14 @@ def start_repl():
             if line == '\n':
                 continue
             current_env = global_env
-            evau(parse(line))
+            evau(parse(line, evau))
 
     try:
         while True:
             current_env = global_env
             code_obj = cli.read_input(on_exit=AbortAction.RAISE_EXCEPTION)
             try:
-                val = evau(parse(code_obj.text))
+                val = evau(parse(code_obj.text, evau))
                 print(vau_str(val))
             except SyntaxError as e:
                 print "error: %s" % e

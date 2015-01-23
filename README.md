@@ -24,7 +24,10 @@ The core of vau is designed to be easily easily lexed and analyzed. Thus vau **e
 
 ```#foo` ``` is a syntaxitive named #foo` that expects an expression afterward when foo is encountered
 
+```^foo``` is a symbol named ^foo that, when referred to as just "foo" by the reader, will be evaluated at read time
+
 ```.foo``` is a platform object named foo
+
 ```_``` is the name of a symbol that can never be bound (called `#ignore` in Kernel)
 
 ### vau has builtin operators for defining new syntax

@@ -3,9 +3,8 @@ __author__ = 'bloggins'
 import __builtin__
 
 from .combiners import Syntaxitive, Operative, Applicative
-from .types import Symbol, List
-from .environment import global_env, Env
-from .reader import syntax_forms
+from .types import Symbol, List, symbol_prefixes
+from .environment import global_env, syntax_forms, Env
 
 
 def __evau_builtin_platform_object(x, env):
@@ -39,8 +38,8 @@ def __evau_builtin_if(x, env):
 def __evau_builtin_define(x, env):
     (_, var, exp) = x
     start_sigil = var[0]
-    if start_sigil not in ['$', '@', '%']:
-        raise SyntaxError("symbol '%s' is invalid; definitions must start with a '$', '@', or '%%'" % var)
+    if start_sigil not in symbol_prefixes:
+        raise SyntaxError("symbol '%s' is invalid; definitions must start with one of %s" % (var, symbol_prefixes))
 
     val = evau(exp, env)
 
@@ -54,7 +53,7 @@ def __evau_builtin_define(x, env):
     elif isinstance(val, Syntaxitive):
         if start_sigil != '#':
             raise SyntaxError("symbol '%s' is invalid; symbols that name syntaxitives must start with '#'" % var)
-    elif start_sigil != '%':
+    elif start_sigil != '%' and start_sigil != '^':
         raise SyntaxError("symbol '%s' is invalid for the type of object (%s) being defined" % (val, type(val)))
     env[var] = val
 
