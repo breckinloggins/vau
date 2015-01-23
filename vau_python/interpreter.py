@@ -111,7 +111,7 @@ vau_builtins = {
     # 'cons': lambda x, y: [x] + y,
     # 'eq?': op.is_,
     # 'equal?': op.eq,
-    # 'list': lambda *x: List(x),
+    'list': lambda v, *x: List([evau(expr, v) for expr in x]),
     # 'list?': lambda x: isinstance(x, List),
     # 'not': op.not_,
     # 'null?': lambda x: x == [],

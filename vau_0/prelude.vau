@@ -17,6 +17,9 @@
 
 (rem TODO: dicts should be functions of their keys)
 
+(define lambda (vau (args body) %
+    (wrap (evau (list vau args (quote _) body) %))))
+
 (rem === Bring in builtins and primitives from the platform ===)
 
 (rem Define some non-prefixed Clojure-like symbols)

@@ -51,7 +51,7 @@ Platform integration (currently only python):
 - Built-in syntax abstractions (like Syntaxitives and full control over the reader and the expander)
 - Macros and syntaxitives provide layers on top of vau
 - Extremely rich integration with the reader and the repl
-- Very little assumptions about the optimization semantics of the host (e.g. vau WILL have an explicit recur construct)
+- Very little assumptions about the optimization semantics of the host (though this is farther in the future)
 
 *References*
 
