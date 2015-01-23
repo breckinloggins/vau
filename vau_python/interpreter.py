@@ -15,10 +15,10 @@ def __evau_builtin_python_object(env, name):
         if val is None:
             val = getattr(__builtin__, name)
 
-        if val is not None and hasattr(val, '__call__'):
-            # Need to wrap this call because it won't be expecting
-            # to take an environment or unevaluated operands
-            val = __evau_builtin_raw_wrap(env, val)
+        # if val is not None and hasattr(val, '__call__'):
+        #     # Need to wrap this call because it won't be expecting
+        #     # to take an environment or unevaluated operands
+        #     val = __evau_builtin_raw_wrap(env, val)
 
         return val
 

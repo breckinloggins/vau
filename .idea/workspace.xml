@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/interpreter.py" afterPath="$PROJECT_DIR$/vau_python/interpreter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_0/prelude.vau" afterPath="$PROJECT_DIR$/vau_0/prelude.vau" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vau.iws" />
@@ -83,18 +80,18 @@
       <file leaf-file-name="prelude.vau" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TODO.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TODO.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/TODO.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="165">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.13833992" vertical-offset="0" max-vertical-offset="759">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34220532" vertical-offset="0" max-vertical-offset="2370">
-              <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2370">
+              <caret line="150" column="4" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
               <folding>
                 <element signature="e#25#43#0" expanded="true" />
               </folding>
@@ -162,12 +159,12 @@
         <option value="$PROJECT_DIR$/vau_python/repl.py" />
         <option value="$PROJECT_DIR$/vau_python/combiners.py" />
         <option value="$PROJECT_DIR$/vau_python/environment.py" />
-        <option value="$PROJECT_DIR$/docs/TODO.md" />
         <option value="$PROJECT_DIR$/docs/data_schema.md" />
         <option value="$PROJECT_DIR$/docs/tail_calls.md" />
-        <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
+        <option value="$PROJECT_DIR$/docs/TODO.md" />
+        <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
       </list>
     </option>
   </component>
@@ -272,7 +269,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit cha&#9;ACTION&#9;CheckinProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;commit &#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit&#10;commi&#9;ACTION&#9;ChangesView.Commit" />
+    <property name="SearchEverywhereHistoryKey" value="commi&#9;ACTION&#9;CheckinProject&#10;commit c&#9;ACTION&#9;ChangesView.Commit&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit cha&#9;ACTION&#9;CheckinProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;commit &#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit" />
     <property name="options.lastSelected" value="preferences.fileTypes" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -638,7 +635,19 @@
       <option name="project" value="LOCAL" />
       <updated>1422041788647</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="call platform-object &quot;python-object&quot; to avoid premature abstraction&#10;&#10;- it doesn't make sense to abstract multi-platformness before we have another platform (we won't even know what we need)&#10;&#10;- python-object needs to explicitly check if it's callable and raw-wrap it if it is&#10;">
+      <created>1422042487997</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1422042487997</updated>
+    </task>
+    <task id="LOCAL-00031" summary="defun: in which I start to become enlightened&#10;">
+      <created>1422044458829</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1422044458829</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -682,8 +691,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="the very basics of eval" />
-    <MESSAGE value="eval of 'quote', 'if', 'define', and proc application of builtin procs" />
     <MESSAGE value="more python operators added to the environment (in a very un-vau way)" />
     <MESSAGE value="evau: the ultimate pun&#10;" />
     <MESSAGE value="define set! and fn (lambda)" />
@@ -707,7 +714,9 @@
     <MESSAGE value="define doesn't need an exclamation mark (because it introduces a new symbol rather than mutating it), but defsyntax! does (because it mutates the reader as it is running)" />
     <MESSAGE value="allow forms to span multiple lines in a file; get rid of Applicative and lose the builtin lambda (will be defined in the language soon)" />
     <MESSAGE value="lambda: the penultimate abstraction (lambda is now defined in vau)&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="lambda: the penultimate abstraction (lambda is now defined in vau)&#10;" />
+    <MESSAGE value="call platform-object &quot;python-object&quot; to avoid premature abstraction&#10;&#10;- it doesn't make sense to abstract multi-platformness before we have another platform (we won't even know what we need)&#10;&#10;- python-object needs to explicitly check if it's callable and raw-wrap it if it is&#10;" />
+    <MESSAGE value="defun: in which I start to become enlightened&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="defun: in which I start to become enlightened&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -953,25 +962,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/TODO.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="165">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.5" vertical-offset="0" max-vertical-offset="1005">
@@ -985,12 +975,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34220532" vertical-offset="0" max-vertical-offset="2370">
-          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1566" max-vertical-offset="2370">
+          <caret line="150" column="4" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
           <folding>
             <element signature="e#25#43#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/TODO.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13833992" vertical-offset="0" max-vertical-offset="759">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>

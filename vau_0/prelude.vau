@@ -5,9 +5,6 @@
 (defsyntax! ^rem 'ignore)
 (rem This is the prelude for vau)
 
-(rem TODO: this should be checked inside a quasi-quote macro instead of being defined here)
-(define unquote (vau (x) env (evau x env)))
-
 (rem Define the . prefix as a quick accessor to underlying platform objects)
 (defsyntax! #.` (x) (python-object x))
 
@@ -15,13 +12,11 @@
 (define get-current-environment (vau () env env))
 (define empty-environment (.Env))
 
-(rem TODO: dicts should be functions of their keys)
-
 (define lambda (vau (args body) %
     (wrap (evau (list vau args (quote _) body) %))))
 
-(rem === Bring in builtins and primitives from the platform ===)
+(rem NOTE: Breckin started to achieve lisp enlightenment after getting defun to work)
+(define defun (vau (name args body) %
+    (evau (list (quote define) name (list (quote lambda) args body)) %)))
 
-(rem Define some non-prefixed Clojure-like symbols)
-(rem TODO: doesn't work because it runs in an inner environment which is promptly thrown away ($define! ^def $define!))
-(rem defsyntax! ^fn 'lambda)
+(rem === Bring in builtins and primitives from the platform ===)
