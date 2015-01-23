@@ -28,7 +28,7 @@ Names that declare new syntax are called `Syntaxitives` and start with a `#` or 
 Example syntaxitives (in prelude.vau):
 ```
 #'` (x) -> (quote x)             ;; 'foo -> (quote foo)
-#.` (x) -> (platform-object x)   ;; .foo -> (platform-object foo)
+#.` (x) -> (python-object x)     ;; .foo -> (python-object foo)
 ^my-quote (x) -> (quote x)       ;; (my-quote foo) -> (quote foo)
 ```
 
@@ -39,7 +39,7 @@ Note that overuse of syntaxitives may cause diarrhea of the semicolon.
 Platform integration (currently only python):
 
 ```
-(def! os (.__import__ 'os))
+(define os (.__import__ 'os))
 (((.getattr (.getattr os 'path) 'join) 'foo 'bar) => foo/bar
 ```
 

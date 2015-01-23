@@ -9,7 +9,7 @@
 (define unquote (vau (x) env (evau x env)))
 
 (rem Define the . prefix as a quick accessor to underlying platform objects)
-(defsyntax! #.` (x) (platform-object x))
+(defsyntax! #.` (x) (python-object x))
 
 (rem Operations to get the environment)
 (define get-current-environment (vau () env env))
@@ -25,4 +25,3 @@
 (rem Define some non-prefixed Clojure-like symbols)
 (rem TODO: doesn't work because it runs in an inner environment which is promptly thrown away ($define! ^def $define!))
 (rem defsyntax! ^fn 'lambda)
-

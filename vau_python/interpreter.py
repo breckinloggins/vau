@@ -7,15 +7,21 @@ from .types import Symbol, List, symbol_prefixes
 from .environment import global_env, syntax_forms, Env
 
 
-def __evau_builtin_platform_object(env, name):
+def __evau_builtin_python_object(env, name):
     try:
         val = locals().get(name, None)
         if val is None:
             val = globals().get(name, None)
-        if val is not None:
-            return val
-        else:
-            return getattr(__builtin__, name)
+        if val is None:
+            val = getattr(__builtin__, name)
+
+        if val is not None and hasattr(val, '__call__'):
+            # Need to wrap this call because it won't be expecting
+            # to take an environment or unevaluated operands
+            val = __evau_builtin_raw_wrap(env, val)
+
+        return val
+
     except AttributeError as e:
         raise SyntaxError(e)
 
@@ -90,7 +96,7 @@ def __evau_builtin_print(env, x):
 
 
 vau_builtins = {
-    'platform-object': __evau_builtin_platform_object,
+    'python-object': __evau_builtin_python_object,
     'defsyntax!': __evau_builtin_defsyntax,
     'if': __evau_builtin_if,
     'define': __evau_builtin_define,
