@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/TODO.md" afterPath="$PROJECT_DIR$/docs/TODO.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/interpreter.py" afterPath="$PROJECT_DIR$/vau_python/interpreter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_0/prelude.vau" afterPath="$PROJECT_DIR$/vau_0/prelude.vau" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vau.iws" />
@@ -79,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prelude.vau" pinned="false" current-in-tab="false">
+      <file leaf-file-name="prelude.vau" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.18703242" vertical-offset="0" max-vertical-offset="802">
+              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -102,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="interpreter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5703422" vertical-offset="495" max-vertical-offset="2505">
-              <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2505">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#25#43#0" expanded="true" />
               </folding>
@@ -164,9 +163,9 @@
         <option value="$PROJECT_DIR$/docs/data_schema.md" />
         <option value="$PROJECT_DIR$/docs/tail_calls.md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
         <option value="$PROJECT_DIR$/docs/TODO.md" />
         <option value="$PROJECT_DIR$/vau_python/interpreter.py" />
+        <option value="$PROJECT_DIR$/vau_0/prelude.vau" />
       </list>
     </option>
   </component>
@@ -655,7 +654,13 @@
       <option name="project" value="LOCAL" />
       <updated>1422045144978</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="cond: it's nicer the Arc way&#10;&#10;cond or if, which is primitive? I think I prefer cond because it's more &quot;normal&quot;. if feels ad-hoc as a primitive. I chose to implement the Arc version of cond (without the implicit progn/do block). I think pg's rationale (in &quot;Arc at 3 weeks&quot;) is sound.&#10;">
+      <created>1422047295300</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1422047295300</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -699,7 +704,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="evau: the ultimate pun&#10;" />
     <MESSAGE value="define set! and fn (lambda)" />
     <MESSAGE value="define vau. It works in that it doesn't evaluate its arguments, but there is currently not much you can do with it because there isn't any access to the environment." />
     <MESSAGE value="use a real repl. define 'unquote' so that vau can make fexpr-like things." />
@@ -724,7 +728,8 @@
     <MESSAGE value="call platform-object &quot;python-object&quot; to avoid premature abstraction&#10;&#10;- it doesn't make sense to abstract multi-platformness before we have another platform (we won't even know what we need)&#10;&#10;- python-object needs to explicitly check if it's callable and raw-wrap it if it is&#10;" />
     <MESSAGE value="defun: in which I start to become enlightened&#10;" />
     <MESSAGE value="defun: in which I start to become enlightened&#10;&#10;I'm pretty sure every lisp geek has a story about when they became enlightened. This is mine. &#10;&#10;So here's the interesting thing about lisp enlightenment: you always think it's already happened. In my case, I've been studying and playing with various lisps off and on for years now. I understand code-as-data and I understand how homoiconicity helps that along. When I say I understand it I mean that I know about it and I can tell you why it's important and the kind of things it lets you do. But today was the first day that I *felt* it.&#10;&#10;What did it take to become enlightened? Struggling with errors. I was trying to add &quot;defun&quot; to the prelude. It kept not working. I really wished I had a debugger so I could see what lisp was doing. But then I realized: I DO have a debugger. The REPL is right there! So I just kept building up a list in the repl using the list and quote operators and hitting the up arrow and editing it until I had about what I wanted. Then, when I thought it looked good, I &quot;evau&quot;d it. I was able to build up code incrementally, programmatically, until it took the form I wanted. Then I was able to build a function that spit out that code. Then I wrapped that in a define. And then I was done.&#10;&#10;Am I fully enlightened? No. But I'm really starting to get it." />
-    <option name="LAST_COMMIT_MESSAGE" value="defun: in which I start to become enlightened&#10;&#10;I'm pretty sure every lisp geek has a story about when they became enlightened. This is mine. &#10;&#10;So here's the interesting thing about lisp enlightenment: you always think it's already happened. In my case, I've been studying and playing with various lisps off and on for years now. I understand code-as-data and I understand how homoiconicity helps that along. When I say I understand it I mean that I know about it and I can tell you why it's important and the kind of things it lets you do. But today was the first day that I *felt* it.&#10;&#10;What did it take to become enlightened? Struggling with errors. I was trying to add &quot;defun&quot; to the prelude. It kept not working. I really wished I had a debugger so I could see what lisp was doing. But then I realized: I DO have a debugger. The REPL is right there! So I just kept building up a list in the repl using the list and quote operators and hitting the up arrow and editing it until I had about what I wanted. Then, when I thought it looked good, I &quot;evau&quot;d it. I was able to build up code incrementally, programmatically, until it took the form I wanted. Then I was able to build a function that spit out that code. Then I wrapped that in a define. And then I was done.&#10;&#10;Am I fully enlightened? No. But I'm really starting to get it." />
+    <MESSAGE value="cond: it's nicer the Arc way&#10;&#10;cond or if, which is primitive? I think I prefer cond because it's more &quot;normal&quot;. if feels ad-hoc as a primitive. I chose to implement the Arc version of cond (without the implicit progn/do block). I think pg's rationale (in &quot;Arc at 3 weeks&quot;) is sound.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="cond: it's nicer the Arc way&#10;&#10;cond or if, which is primitive? I think I prefer cond because it's more &quot;normal&quot;. if feels ad-hoc as a primitive. I chose to implement the Arc version of cond (without the implicit progn/do block). I think pg's rationale (in &quot;Arc at 3 weeks&quot;) is sound.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -981,14 +986,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/TODO.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="465">
@@ -1002,11 +999,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vau_python/interpreter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5703422" vertical-offset="495" max-vertical-offset="2505">
-          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2505">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="e#25#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vau_0/prelude.vau">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18703242" vertical-offset="0" max-vertical-offset="802">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

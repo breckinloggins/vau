@@ -12,11 +12,11 @@
 (define get-current-environment (vau () env env))
 (define empty-environment (.Env))
 
-(define lambda (vau (args body) %
+(define fn (vau (args body) %
     (wrap (evau (list vau args (quote _) body) %))))
 
 (rem NOTE: Breckin started to achieve lisp enlightenment after getting defun to work)
 (define defun (vau (name args body) %
-    (evau (list (quote define) name (list (quote lambda) args body)) %)))
+    (evau (list (quote define) name (list (quote fn) args body)) %)))
 
 (rem === Bring in builtins and primitives from the platform ===)
