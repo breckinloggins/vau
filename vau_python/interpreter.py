@@ -77,7 +77,7 @@ def __evau_builtin_wrap(x, env):
     return Applicative(combiner.parms, combiner.body, combiner.env, combiner.evau)
 
 
-def __evau_builtin_fn(x, env):
+def __evau_builtin_lambda(x, env):
     (_, parms, body) = x
     return Applicative(parms, body, env, evau)
 
@@ -98,7 +98,7 @@ vau_builtins = {
     '$define!': __evau_builtin_define,
     '$set!': __evau_builtin_set,
     '$vau': __evau_builtin_vau,
-    '$fn': __evau_builtin_fn,
+    '$lambda': __evau_builtin_lambda,
     '@wrap': __evau_builtin_wrap,
     '@evau': __evau_builtin_evau,
 }

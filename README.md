@@ -30,6 +30,11 @@ The core of vau is designed to be easily easily lexed and analyzed. Thus vau **e
 
 ```_``` is the name of a symbol that can never be bound (called `#ignore` in Kernel)
 
+### vau has some nice syntactic sugar
+
+(**coming soon**)
+```foo/bar``` is short for ```(@evau bar foo)``` (thus treating environments as namespaces)
+
 ### vau has builtin operators for defining new syntax
 
 Names that declare new syntax are called `Syntaxitives` and start with a `#`. A Syntaxitive is a combiner that is explicitly restricted to running at read-time in the current evaluation level. If a Syntaxitive symbol has one or more ``` ` ``` characters, each such character represents a "hole" where arguments will go when parsed by the reader. If no such holes are declared, the Syntaxitive is a regular syntax macro (as found in Common Lisp and Clojure).

@@ -26,7 +26,7 @@ class Combiner(object):
 class Operative(Combiner):
     """A combiner that does not evaluate its arguments"""
     def __init__(self, parms, eparm, body, env, evau):
-        if eparm in parms:
+        if eparm in parms and eparm != '_':
             raise SyntaxError("parameter name '%s' cannot be both a formal parameter and an environment parameter")
 
         self.parms, self.eparm, self.body, self.env, self.evau = parms, eparm, body, env, evau

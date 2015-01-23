@@ -25,6 +25,7 @@ def read_from_tokens(tokens, evau_fn=None, static_env=global_env):
         except IndexError:
             raise SyntaxError("expected ')' while reading")
 
+        # Lexical macro expansion happens here
         if len(read_list) > 0 and isinstance(read_list[0], Symbol) and read_list[0][0] not in symbol_prefixes:
             sym = read_list[0]
             sym = Symbol("^%s" % sym)
@@ -45,8 +46,19 @@ def read_from_tokens(tokens, evau_fn=None, static_env=global_env):
             if val is not None:
                 return val
 
-        return read_atom(token)
+        atom = read_atom(token)
 
+        # TODO: Do this in vau when we have greater reader extensibility
+        # if isinstance(atom, Symbol):
+        #     if '/' in atom:
+        #         parts = atom.split('/')
+        #         if len(parts) != 2:
+        #             raise SyntaxError("symbol ('%s') has too many '/' characters. Only 0 or 1 supported." % atom)
+        #         env_part = parse(parts[0], evau_fn, static_env)
+        #         exp_part = parse(parts[1], evau_fn, static_env)
+        #         return [Symbol("@evau"), exp_part, env_part]
+
+        return atom
 
 def read_atom(token):
     """Numbers become Python numbers; every other token is a symbol"""
