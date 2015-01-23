@@ -1,7 +1,27 @@
+from pygments.token import Text
+
 __author__ = 'bloggins'
 
-from .types import Symbol, List, symbol_prefixes
+import os
+
+from .types import Symbol, List, String, symbol_prefixes
 from .environment import syntax_forms, global_env, Env
+from .lexer import VauLexer
+
+current_lexer = None
+
+
+def set_current_lexer(lexer):
+    global current_lexer
+    current_lexer = lexer
+
+
+def load_file(filename, evau_fn=None, static_env=global_env):
+    with open(os.path.realpath(filename)) as vau_file:
+        contents = vau_file.read().replace('\n', ' ')
+        tokens = tokenize(contents)
+        while len(tokens) > 0:
+            evau_fn(read_from_tokens(tokens, evau_fn, static_env))
 
 
 def parse(program, evau_fn=None, static_env=global_env):
@@ -14,7 +34,11 @@ def read_from_tokens(tokens, evau_fn=None, static_env=global_env):
     if len(tokens) == 0:
         raise SyntaxError("unexpected end of input while reading")
 
-    token = tokens.pop(0)
+    while True:
+        token = tokens.pop(0)
+        if not token.isspace():
+            break
+
     if '(' == token:
         read_list = []
         while len(tokens) != 0 and tokens[0] != ')':
@@ -61,7 +85,10 @@ def read_from_tokens(tokens, evau_fn=None, static_env=global_env):
         return atom
 
 def read_atom(token):
-    """Numbers become Python numbers; every other token is a symbol"""
+    """Numbers become Python numbers; every other token is a symbol or a string"""
+    if len(token) >= 2 and token[0] == '"' and token[-1] == '"':
+        return String(token.strip('"'))
+
     try:
         return int(token)
     except ValueError:
@@ -75,10 +102,15 @@ def vau_str(exp):
     """Convert Python object back into a vau-readable string"""
     if isinstance(exp, List):
         return '(' + ' '.join(map(vau_str, exp)) + ')'
+    elif isinstance(exp, String):
+        return '"' + exp + '"'
     else:
         return str(exp)
 
 
 def tokenize(chars):
     """Convert a string of characters into a list of tokens"""
-    return chars.replace('(', ' ( ').replace(')', ' ) ').split()
+    token_iterator = current_lexer.get_tokens(chars)
+    tokens = [value for (token, value) in token_iterator if token != Text.Whitespace]
+
+    return tokens

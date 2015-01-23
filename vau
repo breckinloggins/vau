@@ -3,11 +3,21 @@
 # Initial lisp interpreter based heavily on http://norvig.com/lispy.html
 __author__ = 'bloggins'
 
-from vau_python.repl import start_repl
+from vau_python.reader import load_file, set_current_lexer
+from vau_python.repl import cli
+from vau_python.interpreter import evau
+from vau_python.environment import global_env
+
 
 def main():
-    print "vau: a lisp. (type (.exit) to quit)"
-    start_repl()
+
+    set_current_lexer(cli.layout.lexer)
+
+    try:
+        load_file("vau_0/prelude.vau", evau, global_env)
+    except Exception as e:
+        print "error loading prelude: %s" % e
+        exit(1)
 
 
 if __name__ == "__main__":

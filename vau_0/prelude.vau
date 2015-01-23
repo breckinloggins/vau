@@ -20,3 +20,11 @@
     (evau (list (quote ::) name (list (quote fn) args body)) %)))
 
 (rem === Bring in builtins and primitives from the platform ===)
+(:: python-getattr (raw-wrap .getattr))
+(:: python-__import__ (raw-wrap .__import__))
+(:: python-importlib (python-__import__ "importlib"))
+(:: python-import-module (raw-wrap (python-getattr python-importlib "import_module")))
+
+(rem === The REPL ===)
+(print! "lisp::vau - type (.exit) or Ctrl-D to exit")
+((raw-wrap (python-getattr (python-import-module "vau_python.repl") "start_repl")))
