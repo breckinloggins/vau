@@ -97,7 +97,7 @@ vau_builtins = {
     'platform-object': __evau_builtin_platform_object,
     'defsyntax!': __evau_builtin_defsyntax,
     'if': __evau_builtin_if,
-    'define!': __evau_builtin_define,
+    'define': __evau_builtin_define,
     'set!': __evau_builtin_set,
     'vau': __evau_builtin_vau,
     'lambda': __evau_builtin_lambda,
