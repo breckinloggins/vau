@@ -2,7 +2,7 @@ __author__ = 'bloggins'
 
 import __builtin__
 
-from .combiners import Syntaxitive, Operative, Applicative
+from .combiners import Syntaxitive, Operative
 from .types import Symbol, List, symbol_prefixes
 from .environment import global_env, syntax_forms, Env
 
@@ -77,10 +77,6 @@ def __evau_builtin_raw_wrap(env, exp):
     return lambda v, *x: exp(*[evau(expr, v) for expr in x])
 
 
-def __evau_builtin_lambda(env, parms, body):
-    return Applicative(parms, body, env, evau)
-
-
 def __evau_builtin_evau(env, exp, new_env):
     exp = evau(exp, env)
     new_env = evau(new_env, env)
@@ -100,7 +96,6 @@ vau_builtins = {
     'define': __evau_builtin_define,
     'set!': __evau_builtin_set,
     'vau': __evau_builtin_vau,
-    'lambda': __evau_builtin_lambda,
     'wrap': __evau_builtin_wrap,
     'raw-wrap': __evau_builtin_raw_wrap,
     'evau': __evau_builtin_evau,

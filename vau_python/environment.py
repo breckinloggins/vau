@@ -1,7 +1,5 @@
 __author__ = 'bloggins'
 
-from .types import List, Number, Symbol
-
 
 class Env(dict):
     """An environment: a dict of {'var': val} pairs, with an outer Env"""
@@ -28,8 +26,6 @@ class Env(dict):
 
 def standard_env():
     """An environment with some vau standard procedures"""
-    import math
-    import operator as op
     env = Env()
 
     # TODO: Expose host environment and do these within vau

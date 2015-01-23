@@ -16,7 +16,7 @@ from prompt_toolkit.layout.prompt import DefaultPrompt
 from prompt_toolkit.layout.menus import CompletionsMenu
 
 from .interpreter import vau_builtins, evau
-from .reader import parse, vau_str
+from .reader import parse, vau_str, read_from_tokens, tokenize
 from .environment import global_env, current_env
 
 vau_completer = WordCompleter([k for k in vau_builtins])
@@ -142,11 +142,11 @@ def start_repl():
 
     global current_env
     with open(os.path.realpath("vau_0/prelude.vau")) as prelude:
-        for line in prelude.readlines():
-            if line == '\n':
-                continue
-            current_env = global_env
-            evau(parse(line, evau))
+        current_env = global_env
+        contents = prelude.read().replace('\n', ' ')
+        tokens = tokenize(contents)
+        while len(tokens) > 0:
+            evau(read_from_tokens(tokens, evau, global_env))
 
     try:
         while True:

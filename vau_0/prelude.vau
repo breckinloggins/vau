@@ -19,9 +19,7 @@
 
 (rem === Bring in builtins and primitives from the platform ===)
 
-
-
 (rem Define some non-prefixed Clojure-like symbols)
 (rem TODO: doesn't work because it runs in an inner environment which is promptly thrown away ($define! ^def $define!))
-(rem defsyntax! ^fn 'lambda))
+(rem defsyntax! ^fn 'lambda)
 

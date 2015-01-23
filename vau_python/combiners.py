@@ -40,10 +40,6 @@ class Operative(Combiner):
         return self.evau(self.body, local_env)
 
 
-class Applicative(Combiner):
-    """A combiner that does evaluate its arguments"""
-    pass
-
 
 class Syntaxitive(Combiner):
     """A combiner that influences the reader"""
