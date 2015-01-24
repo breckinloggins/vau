@@ -1,4 +1,4 @@
-#vau: a lisp
+#lisp::vau
 
 This is vau. It is a lisp written in Python.
 

@@ -112,5 +112,4 @@ def tokenize(chars):
     """Convert a string of characters into a list of tokens"""
     token_iterator = current_lexer.get_tokens(chars)
     tokens = [value for (token, value) in token_iterator if token != Text.Whitespace]
-
     return tokens

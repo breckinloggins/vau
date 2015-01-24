@@ -16,6 +16,10 @@ class VauLexer(RegexLexer):
     filenames = ['*.vau']
     mimetypes = ['text/x-vau', 'application/x-vau']
 
+    keywords = (
+
+    )
+
     builtins = (
     )
 
@@ -38,6 +42,7 @@ class VauLexer(RegexLexer):
             # (r'#!r6rs', Comment),
 
             # whitespaces - usually not relevant
+            (r'\n', Text),
             (r'\s+', Text.Whitespace),
 
             # numbers
@@ -59,8 +64,7 @@ class VauLexer(RegexLexer):
             # (r"('|#|`|,@|,|\.)", Operator),
 
             # highlight the keywords
-            #('(%s)' % '|'.join(re.escape(entry) + ' ' for entry in keywords),
-            # Keyword),
+            #('(%s)' % '|'.join(re.escape(entry) + ' ' for entry in keywords), Keyword),
 
             # HACK: This should be handled by some metadata on defsyntax
             (r"\." + valid_name, Name.Constant),

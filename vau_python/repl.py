@@ -7,7 +7,6 @@ from prompt_toolkit import Exit
 from prompt_toolkit.buffer import Buffer
 from prompt_toolkit.layout import Layout
 from prompt_toolkit.layout.prompt import DefaultPrompt
-from prompt_toolkit.layout.menus import CompletionsMenu
 
 from .interpreter import vau_builtins, evau
 from .lexer import VauLexer
@@ -19,7 +18,7 @@ VauLexer.keywords = [k for k in vau_builtins]
 cli = CommandLineInterface(
     layout=Layout(
         before_input=DefaultPrompt('vau> '),
-        menus=[CompletionsMenu()],
+        menus=[],
         lexer=VauLexer),
     buffer=Buffer(completer=vau_completer),
     create_async_autocompleters=True,
