@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="making the repl (more) beautiful&#10;&#10;- starting visual style from the iPython lookalike &#10;-">
+    <list default="true" id="9cdfab19-e291-41fd-8c25-40e2eee981a5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/lexer.py" afterPath="$PROJECT_DIR$/vau_python/lexer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_0/prelude.vau" afterPath="$PROJECT_DIR$/vau_0/prelude.vau" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/repl.py" afterPath="$PROJECT_DIR$/vau_python/repl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vau_python/types.py" afterPath="$PROJECT_DIR$/vau_python/types.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vau.iws" />
@@ -34,8 +30,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27667984" vertical-offset="0" max-vertical-offset="1200">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.770751" vertical-offset="0" max-vertical-offset="1230">
+              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -264,7 +260,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="commit&#9;ACTION&#9;CheckinProject&#10;commi&#9;ACTION&#9;CheckinProject&#10;commit cha&#9;ACTION&#9;ChangesView.Commit&#10;commit c&#9;ACTION&#9;ChangesView.Commit&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit &#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit" />
+    <property name="SearchEverywhereHistoryKey" value="comm&#9;ACTION&#9;CheckinProject&#10;commit&#9;ACTION&#9;CheckinProject&#10;commi&#9;ACTION&#9;CheckinProject&#10;commit cha&#9;ACTION&#9;ChangesView.Commit&#10;commit c&#9;ACTION&#9;ChangesView.Commit&#10;commit ch&#9;ACTION&#9;ChangesView.Commit&#10;commit &#9;ACTION&#9;CheckinProject&#10;pull&#9;ACTION&#9;Git.Pull&#10;commit chang&#9;ACTION&#9;ChangesView.Commit&#10;commit change&#9;ACTION&#9;ChangesView.Commit&#10;commit chan&#9;ACTION&#9;ChangesView.Commit" />
     <property name="options.lastSelected" value="preferences.fileTypes" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -684,7 +680,13 @@
       <option name="project" value="LOCAL" />
       <updated>1422060879943</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="ϛ&#10;&#10;- utf-8 for symbols and strings&#10;- a cool &quot;ϛ&quot; prompt&#10;&#10;Did I mention no more teletype assumptions?&#10;">
+      <created>1422062492447</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1422062492447</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -728,7 +730,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="treat dict objects as functions of their keys&#10;&#10;Note that (some-dict 'foo) =&gt; 'bar but (some-dict 'foo 'baz) =&gt; ('bar 'frob)&#10;" />
     <MESSAGE value="start to autocomplete functionality and more reflection" />
     <MESSAGE value="data driven declaration and handling of evau for builtins" />
     <MESSAGE value="be struct about level-0 symbol name encodings" />
@@ -753,7 +754,8 @@
     <MESSAGE value="read evau print loop: start the repl inside vau&#10;&#10;- generalize the prelude loader to a load_file method in the reader&#10;- use the pygments lexer instead of the simple string splitter (to support strings among other things)&#10;- add strings as a first class data type (although I would rather do this extensibly in vau itself)&#10;- put in some initial procedures in vau for getting at python modules&#10;" />
     <MESSAGE value="no more teletypes (print! becomes present and the birth of the read-evau-present loop)&#10;&#10;Let's think about the future. In the future we might all be wearing holographic goggles. We might even have direct neural interfaces. One thing I'm relatively certain of, though, is that we'll have all of these far-flung technologies before we have computers that fully program themselves. Even if we do, we'll still have programmers. Even if they're called something else, there will always be programmers because there will always be hackers. Hackers and makers and artists and craftspeople aren't going away.&#10;&#10;So what does this have to do with &quot;print!&quot;? Everything.&#10;&#10;When you print something, what are you REALLY doing? In my opinion you're presenting something to the user. You're taking a thing that's inside the computer and manifesting it in the user's world. Well, &quot;print!&quot; does that, but it does so assuming we're still using emulations of teletype machines from the 50's.&#10;&#10;It doesn't take a futurist to predict that in a future where everyone has holographic displays on their heads, people will want to program that environment - IN that environment. Will they type things? Maybe. There's always a need for data entry. Will they want to see text? Most definitely. But will they always?&#10;&#10;(:: red-sphere (make-sphere 'here ('color 'red)))&#10;(:: print! red-sphere)             ;; =&gt; prints &quot;#&lt;some_sphere_object&gt;&quot;&#10;(:: present red-sphere)          ;; =&gt; A virtual red sphere appears in front of the user&#10;&#10;I think I know which I prefer (and you can still have print if you want, too).&#10;&#10;Or how about:&#10;(:: present slideshow)&#10;(:: present doom3-bfg)&#10;&#10;" />
     <MESSAGE value="disable the completions menu for now&#10;&#10;It's more annoying than useful at the moment.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="disable the completions menu for now&#10;&#10;It's more annoying than useful at the moment.&#10;" />
+    <MESSAGE value="ϛ&#10;&#10;- utf-8 for symbols and strings&#10;- a cool &quot;ϛ&quot; prompt&#10;&#10;Did I mention no more teletype assumptions?&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="ϛ&#10;&#10;- utf-8 for symbols and strings&#10;- a cool &quot;ϛ&quot; prompt&#10;&#10;Did I mention no more teletype assumptions?&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1134,10 +1136,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/vau_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27667984" vertical-offset="0" max-vertical-offset="1200">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.770751" vertical-offset="0" max-vertical-offset="1230">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>

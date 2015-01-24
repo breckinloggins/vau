@@ -1,3 +1,5 @@
+![vau logo](/docs/vau_logo.png)
+
 #lisp::ϛ
 
 This is vau (ϛ). It is a lisp written in Python.
@@ -71,4 +73,4 @@ Platform integration (currently only python):
 - [Schrodinger's Equation of Software](http://gliese1337.blogspot.com/2012/04/schrodingers-equation-of-software.html)
 - [The Kernel Underground](http://axisofeval.blogspot.com/2011/09/kernel-underground.html)
 
-*"The Vau Programming Language" "vau-lang", and "vau-lang.org" are (c) Breckin Loggins 2015*
+*"The Vau Programming Language" "vau-lang", "vau-lang.org" and the (stylized) vau-digamma logo (ϛ) are (c) Breckin Loggins 2015*
