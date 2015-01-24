@@ -1,11 +1,11 @@
 __author__ = 'bloggins'
 
 
-class Symbol(str):
+class Symbol(unicode):
     pass
 
 
-class String(str):
+class String(unicode):
     pass
 
 

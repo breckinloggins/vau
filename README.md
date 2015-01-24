@@ -1,6 +1,6 @@
-#lisp::vau
+#lisp::ϛ
 
-This is vau. It is a lisp written in Python.
+This is vau (ϛ). It is a lisp written in Python.
 
 The name is due to John N. Shutt and his [Kernel](http://web.cs.wpi.edu/~jshutt/kernel.html) programming language. 
 
